@@ -2,38 +2,120 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "This is a Sample Question 1?",
+      "question": "A Temperature Control system is known as:",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
-      },
-      "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+        "a": "Process Control System",
+        "b": "Servomechanism",
+        "c": "Cascade Control System",
+        "d": "None of These"
       },
       "correctAnswer": "a",
       "difficulty": "beginner"
     },
     {
-      "question": "This is a Sample Question 2?",
+      "question": "The time constant of a servo control system can be decreased by",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": " decreasing the inertia of the system",
+        "b": "decreasing the damping of the system",
+        "c": "All of the above",
+        "d": "None of these"
       },
-      "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Identify the transducer not used for the measurement of temperature.",
+      "answers": {
+        "a": "Thermocouple",
+        "b": "RVDT",
+        "c": "RTD",
+        "d": "Pyrometer"
       },
-      "correctAnswer": "c",
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "RTD and Thermistors are _____ transducers.",
+      "answers": {
+        "a": "Passive and Analog",
+        "b": "Passive and digital",
+        "c": "Active and digital",
+        "d": "Active and Analog"
+      },
+      "correctAnswer": "a",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "The function of the proportional mode is to ____________?",
+      "answers": {
+        "a": "Provide Gain",
+        "b": "Eliminate Offsets",
+        "c": "To speed up the response and minimize the overshoot",
+        "d": "All of the above"
+      },
+      "correctAnswer": "a",
+      "difficulty": "beginner"
+    },
+	{
+      "question": "The function of the proportional plus integral mode is to ____________?",
+      "answers": {
+        "a": "Provide Gain",
+        "b": "Eliminate Offsets",
+        "c": "To speed up the response and minimize the overshoot",
+        "d": "All of the above"
+      },
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },	
+	
+	{
+      "question": "Gain and proportional bands are",
+      "answers": {
+        "a": "Two different control modes",
+        "b": "Reciprocally related",
+        "c": "Adjusted independently 0f one another",
+        "d": "Controller functions calibrated in time units"
+      },
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+	
+	{
+      "question": "Physical parameters change due to ______",
+      "answers": {
+        "a": "voltage",
+        "b": "internal and external disturbances",
+        "c": "Current",
+        "d": "Power"
+      },
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+	
+	
+	{
+      "question": "What is a process control system?",
+      "answers": {
+        "a": "system to keep the parameters at zero value",
+        "b": " system to maintain the parameters constant",
+        "c": "system to keep the parameters at highest value",
+        "d": "system to check the voltage"
+      },
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+	
+	{
+      "question": "What is the main objective of process control?",
+      "answers": {
+        "a": "to control mechanical parameters",
+        "b": "to control physical parameters",
+        "c": "to control optical parameters",
+        "d": " to control electrical parameters"
+      },
+      "correctAnswer": "b",
       "difficulty": "beginner"
     }
+	
   ]
 }

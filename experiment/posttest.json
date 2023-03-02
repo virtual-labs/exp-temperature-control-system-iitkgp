@@ -2,37 +2,114 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "This is a Sample Question 1?",
+      "question": "The term Hysteresis is related to",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": " P-I Control",
+        "b": " ON-OFF Control",
+        "c": " Feed forward Control",
+        "d": " Ratio Control"
       },
-      "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Temperature coefficient of thermistor is _______.",
+      "answers": {
+        "a": "Positive or negative  ",
+        "b": "Positive",
+        "c": "Negative",
+        "d": "Zero"
       },
       "correctAnswer": "a",
       "difficulty": "beginner"
     },
     {
-      "question": "This is a Sample Question 2?",
+      "question": "Full form of RTD is",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "Resistance Thermistor Detector ",
+        "b": "Resistance Temperature Detector",
+        "c": "Round Temperature Detector",
+        "d": "Resistance Thermometer "
       },
-      "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Thermistors are very _____ for narrow range applications and slightly _____ for wide temperature ranges",
+      "answers": {
+        "a": "Unstable , linear ",
+        "b": " Nonlinear , unstable  ",
+        "c": "Linear , Nonlinear",
+        "d": " Nonlinear , linear "
       },
       "correctAnswer": "c",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "In which one of the following controllers, the response is fast?",
+      "answers": {
+        "a": "PID ",
+        "b": "PI",
+		"c": "Both the above",
+        "d": "None of the above"
+        
+      },
+      "correctAnswer": "a",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "which one of the following controllers increases the order of the system by one?",
+      "answers": {
+        "a": " P-controller ",
+        "b": "P-I controller",
+        "c": "None of these",
+        "d": " All of the above"
+      },
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "What is the disadvantage of proportional controller?",
+      "answers": {
+        "a": "Provides a constant steady state error  ",
+        "b": "Improves stability of the system",
+        "c": "Improves steady state error",
+        "d": " None"
+      },
+      "correctAnswer": "a",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "A two-position controller (on/off) always",
+      "answers": {
+        "a": "Controls around a point ",
+        "b": "Controls with a fixed offset",
+        "c": "Automatically adjusts its integral time",
+        "d": "Requires precise tuning "
+      },
+      "correctAnswer": "a",
+      "difficulty": "beginner"
+    }, 
+    {
+      "question": "Automatic controllers operate on the difference between set point and measurement, which is called",
+      "answers": {
+        "a": " Error ",
+        "b": "Bias",
+        "c": "Feedback ",
+        "d": "Offset "
+      },
+      "correctAnswer": "a",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "If the proportional band of the controller is adjusted to the minimum possible value, the control action is likely to be",
+      "answers": {
+        "a": " On/off ",
+        "b": " With maximum offset",
+        "c": "Excellent ",
+        "d": "Inoperative"
+      },
+      "correctAnswer": "a",
       "difficulty": "beginner"
     }
   ]
