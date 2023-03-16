@@ -1,13 +1,397 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<!-- Add CSS at the head of HTML file -->
-    <link rel="stylesheet" href="./css/main.css">
-</head>
-<body>
-		<!-- Your code goes here-->
+<!-- This HTML page and script files are developed by
+    Piyali Chattopadhyay
+    Project Scientist-Technical,
+    Virtual Labs IIT Kharagpur.-->
 
-	<!-- Add JS at the bottom of HTML file --> 
-        <script src="./js/main.js"></script>
-</body>
-</html>
+<!DOCTYPE html>
+<html lang="en"><!--html tag start-->
+<head>
+    <title>Temperature Control system</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../css/adik.css" rel="stylesheet">
+  
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script  src="./js/TC.js">   </script>
+  
+  
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Knob/1.2.13/jquery.knob.min.js"></script>-->
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.2.1/math.js"></script>
+  <script src=" https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.2.1/math.min.js  "></script>
+ 
+ 
+
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"> </script>
+<link rel="stylesheet" href="./css/demo.css">
+<link rel="stylesheet" href="./css/TC.css">
+
+	
+
+
+  <style>
+	.bluedot{
+	position:absolute;
+    border: 2px solid blue;
+    border-radius:50%;
+    background-color:blue;
+    background-image:linear-gradient(90deg,#0066ff,#00ccff);
+	box-shadow: 5px 5px 8px #888888;
+	}
+	.handlep{
+	position:absolute;
+    border: 2px solid blue;
+    border-radius:50%;
+    background-color:white;
+    background-image:url(./images/plus.png);
+	background-size:cover;
+	background-position:center;
+	
+	}
+	
+	.handlen{
+	position:absolute;
+    border: 2px solid blue;
+    border-radius:50%;
+    background-color:white;
+    background-image:url(./images/minus.jpg);
+	background-size:cover;
+	background-position:center;
+	
+	}
+	
+	canvas {	
+	max-width:100%;
+	}
+	
+  </style>
+  
+  
+  
+</head>
+<body><!--body tag start-->
+    <div class="container p-3 my-3 text-primary text-center border"><!--First Container under body tag start-->
+        <div class="row"><!--First row under 1st container start-->
+            <div class="col-md-3"><!--First col under 1st row start-->
+                <img class="img-fluid rounded" src="./images/vlabs.png" alt="VLabs logo">
+            </div><!--First col under 1st row end-->
+            <div class="col-md-6"><!--2nd col under 1st row start-->
+                <p class="display-1"> <b> Virtual Labs <br> IIT Kharagpur </b> </p>
+            </div><!--2nd col under 1st row end-->
+            <div class="col-md-3"><!--3rd col under 1st row start-->
+                <img class="img-fluid rounded" src="./images/iitkgp.png" alt="IIT KGP Logo" >
+            </div><!--3rd col under 1st row end-->
+        </div><!--First row under 1st container end-->
+    
+        <hr>
+        <div class="row"><!--2nd row under 1st container start-->
+            <div class="col-md-3"><!--First col under 2nd row start-->
+
+            </div><!--First col under 2nd row end-->
+            <div class="col-md-6"><!--2nd col under 2nd row start-->
+                <p class="h1"> <b>Simulation</b> </p>
+            </div><!--2nd col under 2nd row end-->
+            <div class="col-md-3"><!--3rd col under 2nd row start-->
+
+            </div><!--3rd col under 2nd row end-->
+        </div><!--2nd row under 1st container end-->
+        <hr>
+		
+        <!--<div class="d-flex p-1 text-primary"><!--3rd row under 1st container start
+          <div class="p-1" > <p class="h4"><a href="../index.html"> <span class="LN"> <b> Control and Instrumentation Lab </b></span>  </a></p></div>
+          <div class="p-1"> <p class="h4"><a href="./index.html"> <span class="ExpN"> <b> Temperature Control system </b> </span> </a></p></div>
+        </div><!--3rd row under 1st container end-->
+		
+    </div><!--First Container under body tag end-->
+    
+    <!--<div class="container p-3 my-5 text-primary text-center border"><!--2nd Container under body tag start
+        <div class="row"><!--First row under 2nd container start
+
+            <ul class="nav nav-pills nav-justified">
+                <li class="nav-item">
+                  <a class="nav-link" href="../index.html">Introduction</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../aim.html">Objective</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../prequiz.html">Pre Quiz</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../theory.html">Theory</a>
+                </li>
+				<li class="nav-item">
+                  <a class="nav-link" href="../procedure.html">Procedure</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="./index.html">Simulation</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../postquiz.html">Post Quiz</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../feedback.html">Feedback</a>
+                  </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../references.html">References</a>
+                  </li>
+
+              </ul>
+        </div><!--First row under 2nd container end
+    </div><!--2nd Container under body tag end-->
+	
+    <div class="container p-3 my-5 text-left border"><!--3rd Container under body tag start-->
+      <div class="row"><!--First row under 3rd container start-->
+        <div class="col-md-1"></div><!--First col under 3rd container start& end-->
+        <div class="col-md-10"><!--2nd col under 3rd container start-->
+            <p class="text-center bg-success"> <a class="nav-link" data-bs-toggle="tab"  id="instcontrol" style="background-color:#128BD9"  ><span class=" h3 text-dark"> Instructions </span></a>
+              <ol id="inst" style="display:block;height:200px;overflow-y:auto;">
+                      <li>At first Open loop Control needs to be done on the plant(Oven)for system identification and finding out plant open loop transfer function.Hence
+					      connect 1-5(blue connecting dots) and click on the 'Check Connection' button.</li></br>
+  
+					  <li>Click on 'ON' button to switch on the circuit and set the reference temperature to 5&#8451; (default) by clicking on plus sign of the knob beside 'measure'
+					      button.</li><br/>
+					 
+					 <li> Set P potentiometer to 0.5 which gives k<sub>p</sub>=10 and input of 0.5v to the driver .</li></br>
+
+					 <li>Put switch 'S<sub>2</sub> to 'measure' position and 'S<sub>1</sub> to 'Run',click on'Start' button of the stop watch.</li><br/> 
+
+					<li>Click on 'Table' button to observe the room temperature ,now take observation by clicking 'Table' button after each 10 sec. until the
+					    plant temperature becomes stable(two to three temperature value in observation table will come approximately same).</li><br/>
+						
+					<li>Click on 'Stop' to stop the stop watch.</li><br//>
+
+					<li>Click on 'Plot' button to observe Temperature Vs. Time curve for open loop control.Click on 'Ok' to see plant Transfer Function.Plot can be downloaded
+					    by clicking on 'Download Plot' button.</li></br>
+
+					<li>Click on 'clear' and reset the stop watch.Set the reference temperature to 60&#8451; now.</li>    </br>
+
+					<li> Set P potentiometer to 0.6 now.Connect 1-5,8-9 for Proportional Control and click on the 'Check Connection' button.
+					     Follow the steps 4 to 8 to observe Temperature Vs. Time curve for Proportional control.After plotting click on 'Ok' to 
+                         calculate corresponding results(steady state error and Percentage Overshoot).</li></br>
+					 
+					<li>Set P potentiometer to 0.6 and I potentiometer to 0.8 now.Connect 1-5,8-9,2-6 for Proportional Integral Control and click on the 'Check Connection' button.
+					     Follow the steps 4 to 8 to observe Temperature Vs. Time curve for Proportional Integral control.After plotting click on 'Ok' to 
+                         calculate corresponding results(steady state error and Percentage Overshoot).</li><br/>
+						 
+					<li>Similarly, set P potentiometer to 0.8, I potentiometer to 1.0 and D potentiometer to 0.3 now.Connect 1-5,8-9,2-6,3-7 for Proportional Integral Derivative Control and click on the 'Check Connection' button.
+					     Follow the steps 4 to 8 to observe Temperature Vs. Time curve for Proportional Integral Derivative control.After plotting click on 'Ok' to 
+                         calculate corresponding results(steady state error and Percentage Overshoot).</li><br/>
+						 
+		   </ol>
+            </p> 
+          </div><!--2nd col under 3rd container end-->
+        <div class="col-md-1"></div><!--3rd col under 3rd container start& end-->
+      </div><!--First row under 3rd container end-->
+    </div><!--3rd Container under body tag end-->
+	
+    <div class="container p-3 my-5 text-center border" id="canvas" ><!--Fourth container under body tag start-->
+	
+		<div class="row my-5 gy-2"><!--- 2nd row under fourth container start--->
+        
+        <div class="col-md-8" ><!--2nd col under 2nd row start -->
+          <!-- Code Start here--> 
+        <div class="img-container"><!--img container div start-->
+		
+		<!--<input type="number" id="ambtemp" min="0" max="70" step="0.1"  value="30.2"  ><span style="position:absolute;">Enter the value of Ambient Temperature</span>-->
+		<img class="img-fluid " id="controller" src="images/controller.png " />
+		<!--<img class="img-fluid switch" id="red_switch" onclick="OnOff()" value="off" src="./images/red_switch.png " style="cursor:pointer;" />
+		
+		<!---knob 1 1st col 1st row--------->
+		<div class="bluedot" id="knob1" style=" width:13%;height:25%;top:15%;left:7%;pointer-events:none;">
+		<div class="handlep" id="knob1p" onclick="rotate1()"style="width:30%;height:30%;top:33%;left:0%;"></div>
+		<div class="handlen" id="knob1n"onclick="rotate2()" style="width:30%;height:30%;top:33%;left:70%;"></div>
+		<input type="number" id="P" min="0" value="0" max="1" step="0.1" style="position:absolute;width:50%;height:30%;top:60%;left:29%;text-align:center; background: transparent;border:none">
+		</div>
+		
+		<!---knob 2 1st col 1st row--------->
+		<div class="bluedot" id="knob2" style=" width:13%;height:25.4%;top:15%;left:20.8%;pointer-events:none;">
+		<div class="handlep" id="knob2p" onclick="rotate3()"style="width:30%;height:30%;top:33%;left:0%;"></div>
+		<div class="handlen" id="knob2n"onclick="rotate4()" style="width:30%;height:30%;top:33%;left:70%;"></div>
+		<input type="number" id="I" min="0" value="0" max="1" step="0.1" style="position:absolute;width:50%;height:30%;top:60%;left:29%;text-align:center; background: transparent;border:none">
+		</div>
+		
+		<!---knob 3 1st col 1st row--------->
+		<div class="bluedot" id="knob3" style=" width:13%;height:25%;top:15%;left:35%;pointer-events:none;">
+		<div class="handlep" id="knob3p" onclick="rotate5()"style="width:30%;height:30%;top:33%;left:0%;"></div>
+		<div class="handlen" id="knob3n"onclick="rotate6()" style="width:30%;height:30%;top:33%;left:70%;"></div>
+		<input type="number" id="D" min="0" value="0" max="1" step="0.1" style="position:absolute;width:50%;height:30%;top:60%;left:29%;text-align:center; background: transparent;border:none">
+		</div>	
+
+
+		<!---knob 4 1st col 1st row--------->
+		<div class="bluedot" id="knob4" style=" width:10%;height:20%;top:10%;left:61%;pointer-events:none;">
+		<div class="handlep" id="knob4p" onclick="rotate7()"style="width:30%;height:30%;top:33%;left:0%;"></div>
+		<div class="handlen" id="knob4n"onclick="rotate8()" style="width:30%;height:30%;top:33%;left:70%;"></div>
+		
+		</div>
+		
+		<input type="number" id="temp" min="5" max="100" step="5" value="5" readonly=readonly >
+		<input type="number" id="seudotemp" min="5" max="100" step="5" value="5" readonly=readonly >
+		<input type="number" id="controltype" min="1" max="4" step="1" value="1" readonly=readonly >
+		
+		<img class="img-fluid " onclick="OnOff()" id="on-off" src="./images/off.png " />
+		<img class="img-fluid " id="Hi-Lo" src="images/Hi.png " />
+		<img class="img-fluid " onclick="SetMeasure()" id="set-measure" src="images/off.png " />
+		<img class="img-fluid " onclick="RunWait()" id="run-wait" src="./images/on.png " />
+		
+		
+		
+			<div id="bd1"></div> 
+			<div id="bd2"></div>
+			<div id="bd3"></div>
+			<div id="bd4"></div>
+			<div id="bd5"></div>
+			<div id="bd6"></div>
+			<div id="bd7"></div>
+			<div id="bd8"></div>
+			<div id="bd9"></div>
+			<div id="bd10"></div>
+  
+        </div><!--img container div end--><br>
+			<button type="button" id="check" class="btn btn-primary" >Check Connection</button>
+			<button type="button" id="plot"  onclick="plot()" class="btn btn-primary" >Plot</button>
+			<button type="button" id="tabled" onclick="createTable()" class="btn btn-primary" >Table</button>
+			<button type="button" id="refresh" onclick="Refresh()" class="btn btn-primary" >Clear</button>
+	</div><!---end of 2nd col under 2nd row--->
+	
+	<!----->
+        <div class="col-md-4"><!--3rd col under 2nd row start-->
+          <!-- Code Start here-->
+		 <div class="img-container"><!--img container div start--> 
+		 <img class="img-fluid" id="oven" onclick="incrspeed()" src="./images/OVEN.png "/>
+		 
+		 <div id="bd11"></div>
+		
+		</div>
+		</div>
+		
+	
+
+	
+
+	
+        </div><!--2nd row under fourth container end-->
+
+ 
+        
+	<div class="row my-5 gy-2"><!--- 4th row under fourth container start--->
+	
+		
+        <div class="col-md-6 "><!--1st col under 4th row start -->	
+		
+		
+			<table id="myTable" style="width:100%">
+			
+				
+				  <tr>
+					<th>Sl No.</th>
+					<th>Time(sec)</th> 
+					<th>Temperature(&#8451;)</th>
+					
+				  </tr>
+				  
+			</table>
+			
+		</div><!--1st col under 4th row end -->
+		
+		<div class="col-md-6 "><!--2nd col under 4th row start -->	
+		
+		<!-------------------------------Stop Watch------------------------------------->
+			<div id="stopwatchd" class="card border-primary rounded" style="display: block;" >
+				<div class="card-body" style="background-color:#F5EC5F;">
+			 
+					<p class="card-text" style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Stop Watch</p>
+					<p class="timerDisplay"><span id="seconds">00</span>:<span id="tens">00</span></p>
+					 <div class="timerunit ">
+					 sec : ms
+					</div>
+					 
+					  <button type="button" id="button-start" onclick="startwatch()" class="btn btn-success ">Start </button>
+					  <button id="button-stop" type="button" onclick="stopwatch()"  class="btn btn-danger ">Stop </button>
+					  <button id="button-reset"  onclick="resetwatch()" class="btn btn-primary ">Reset</button>
+					 
+
+
+				</div>
+			</div>			
+		
+		<!----------------------------------------------------------------------------------->	
+		</div><!--2nd col under 4th row end -->			
+		
+	</div><!--- 4th row under fourth container end--->	
+
+
+	 <div class="row justify-content-center"><!-----------------------graph T vs. w----------------------------------------->
+		
+	 
+			<div class="col-md-7">
+				<div id = "plotbucket" class="content-center" style="display:none; position relative; border:3px solid blue;height:530px;width:823px ">
+				<button type="button" id="exportChart" class="btn btn-primary"  style="display:none;position:absolute;left:20%;">Download Plot</button>
+				<button type="button" id="result" class="btn btn-primary" onclick="showcalcDiv()"  style="display:none;position:absolute;left:27%">OK</button><br/><br/>
+					<div id="chartContainer"  style="display:none; position:absolute; height: 50%; width: 40%;z-index:1 "></div>
+					
+				</div>
+				
+			</div>
+			
+			<div class="col-md-4">
+			<div id = "calcbucket"  class="img-container">
+			<div id="oltf" style="display:none;position:absolute;left:45%">
+			Plant Transfer Function: 
+			$$  G(s)= \frac{132.2e^{-15s}}{1+270s} $$
+			
+			
+			</div>
+			<div id="Presult" style="display:none;position:absolute;left:20%">
+			Enter the final value of oven temperature: <input type="number" id="fv" value="0" ><br/><br/>
+			Enter the Peak value of oven temperature: <input type="number" id="tp" value="0" ><br/><br/>
+			
+			Steady state error: <input type="number" id="ess" value="0" style="position:absolute" ><br/><br/>
+			% Overshoot : <input type="number" id="ov" value="0" style="position:absolute"><br/>
+			<button type="button" id="calculate" class="btn btn-primary" onclick="calc()"  style="display:none;position:absolute;float:right">OK</button>
+			
+			</div>
+			</div>
+			</div>
+		<div class="col-md-1"></div>
+	</div>	
+
+	
+	
+          <!-- Code End here-->
+        </div><!--Fourth container under body tag end-->
+          
+      <!--</div>
+    </div>-->
+
+    <div class="container p-3 my-5 text-primary text-center border"><!--Last and fifth container under body tag start-->
+      <div class="row">
+        <footer>
+          <div class="row ce">
+            <div class="col-sm-12">
+              <p class="h5"><i> Copyright ©2022 <a href="http://vlabs.iitkgp.ac.in/vlt/">Virtual Labs IIT Kharagpur</a> </i><br><br>
+              <a href="../../license/index.html" target="_blank"> Licensing Terms </a>
+            </p>
+            </div>
+          </div>
+        </footer>
+      </div>
+  </div><!--Last and fifth container under body tag end-->
+  
+   <script src="./js/jsPlumb.js"></script>	
+	<script src="./js/demo.js"> </script>
+	
+	
+</body><!--body tag end-->
+</html><!--html tag end-->
