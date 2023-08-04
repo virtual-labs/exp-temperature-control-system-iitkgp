@@ -4,8 +4,8 @@
 
 **The Plant(Oven)**
 
-Plant to be controlled is an electric oven,the temperature of which must adjust itself in accordance with the reference or command.This is a thermal system which basically involves transfer of heat from one section to another.In present case we are interested in transfer of heat from heater coil to the oven and leakage of heat from the oven to the atmosphere.Here a lumped parameter model is considered.For precise analysis,a distributed parameter model must be used.Another difficulty associated with temperature control system is that 
-whereas the temperature rise is produced by energy input,which is controllable,the temperature fall is due to heat loss, which is uncontrollable.There are three modes of heat transfer viz. conduction,convection,radiation.Heat transfer through radiation may be neglected in the present case since the temperatures involved are quite small. For conductive and convective heat transfer.
+Plant to be controlled is an electric oven, the temperature of which must adjust itself in accordance with the reference or command. This is a thermal system which basically involves transfer of heat from one section to another.In present case we are interested in transfer of heat from heater coil to the oven and leakage of heat from the oven to the atmosphere.Here a lumped parameter model is considered.For precise analysis,a distributed parameter model must be used.Another difficulty associated with temperature control system is that 
+whereas the temperature rise is produced by energy input,which is controllable,the temperature fall is due to heat loss, which is uncontrollable.There are three modes of heat transfer viz. conduction,convection,radiation. Heat transfer through radiation may be neglected in the present case since the temperatures involved are quite small. For conductive and convective heat transfer.
 
 <div align="center">				
 <img alt="" src="./images/fig2-3.png" style="width:553px;height:489px;">
