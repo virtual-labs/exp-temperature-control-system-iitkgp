@@ -26,6 +26,30 @@
 /*.col-md-5 img{
     max-width: 100%;
 }*/
+#proimg{
+	
+transform: rotate(359deg);	
+	
+	
+}
+#theoimg{
+	
+transform: rotate(358deg);	
+	
+	
+}
+#pimg{
+	
+transform: rotate(358deg);	
+	
+	
+}
+#piimg{
+	
+transform: rotate(358deg);	
+	
+	
+}
 .img-container {
     display: inline-block;
     position: relative;
