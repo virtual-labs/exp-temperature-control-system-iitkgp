@@ -42,7 +42,7 @@ $$G(s)= \frac{ke^{-sT_2}}{1+sT_1}$$
 where k = DC gain of the system, T<sub>1</sub>=Time Constant ,T<sub>2</sub>=Delay Time
 
 <div align = "center">
-<img alt="" src="./images/ol.png" style="width:431px;height:294px;">
+<img alt="" id="theoimg" src="./images/ol.png" style="width:431px;height:294px;">
 </div>
 
 **Controller**
@@ -57,7 +57,7 @@ Proportional Controller is simply an amplifier of gain k<sub>p</sub> which ampli
 such controller gives non-zero steady state error to step input for a type-0 system. The proportional block(P) in the system consists of a variable gainn amplifier having a maximum value,K<sub>p max</sub> of 20.
 
 <div align="center">				
-<img alt="" src="./images/P.png" style="width:400px;height:300px;">
+<img alt="" id="pimg" src="./images/P.png" style="width:400px;height:300px;">
 </div>
 			   
 **Proportional-Integral Controller:**
@@ -72,7 +72,7 @@ $$G_{r}(s)=\frac{1}{41s}=\frac{K_{i}}{s}$$
 The integral gain is therefore adjustable in the range 0 to 0.024 (approx).Due to the tolerance of large capacitance's the value of k<sub>i</sub> is approximate.   
 			   
 <div align="center">				
-<img alt="" src="./images/P-I.png" style="width:400px;height:300px;">
+<img alt="" id="piimg" src="./images/P-I.png" style="width:400px;height:300px;">
 </div>			   
 <div align="center">				
 <img alt="" src="./images/Icircuit.png" style="width:400px;height:300px;">
