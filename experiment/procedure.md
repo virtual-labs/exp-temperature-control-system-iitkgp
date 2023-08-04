@@ -6,7 +6,7 @@
 </div>
 
 <div align="center">
-<img class="img-fluid"  src="./images/simu.png" alt=""><br>           
+<img class="img-fluid" id="proimg" src="./images/simu.png" alt=""><br>           
 </div>
 								
 [Fig 2: Circuit diagram of experimental set-up for Temperature Control system simulation]
