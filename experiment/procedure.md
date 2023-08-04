@@ -6,7 +6,7 @@
 </div>
 
 <div align="center">
-<img class="img-fluid"  src="./images/simu.png" alt=""><br>           
+<img class="img-fluid" id="proimg" src="./images/simu.png" alt=""><br>           
 </div>
 								
 [Fig 2: Circuit diagram of experimental set-up for Temperature Control system simulation]
@@ -33,6 +33,12 @@
 9. Set P potentiometer to 0.6 now.Connect 1-5,8-9 for Proportional Control and click on the 'Check Connection' button.Follow the steps 4 to 8 to observe Temperature Vs. Time curve for Proportional control.After plotting click on 'Ok' to calculate corresponding results(steady state error and Percentage Overshoot).
 									 
 10. Set P potentiometer to 0.6 and I potentiometer to 0.8 now.Connect 1-5,8-9,2-6 for Proportional Integral Control and click on the 'Check Connection' button.Follow the steps 4 to 8 to observe Temperature Vs. Time curve for Proportional Integral control.After plotting click on 'Ok' to calculate corresponding results(steady state error and Percentage Overshoot).
+
+<link href="simulation/css/TC.css" rel="stylesheet">
+
+
+
+
 										 
 11. Similarly, set P potentiometer to 0.8, I potentiometer to 1.0 and D potentiometer to 0.3 now.Connect 1-5,8-9,2-6,3-7 for Proportional Integral Derivative Control and click on the 'Check Connection' button.Follow the steps 4 to 8 to observe Temperature Vs. Time curve for Proportional Integral Derivative control.After plotting click on 'Ok' to calculate corresponding results(steady state error and Percentage Overshoot).
  
