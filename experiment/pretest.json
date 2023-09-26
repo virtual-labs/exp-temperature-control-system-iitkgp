@@ -2,7 +2,7 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "A Temperature Control system is known as:",
+      "question": "1. A Temperature Control system is known as:",
       "answers": {
         "a": "Process Control System",
         "b": "Servomechanism",
@@ -13,7 +13,7 @@
       "difficulty": "beginner"
     },
     {
-      "question": "The time constant of a servo control system can be decreased by",
+      "question": "2. The time constant of a servo control system can be decreased by",
       "answers": {
         "a": " decreasing the inertia of the system",
         "b": "decreasing the damping of the system",
@@ -24,7 +24,7 @@
       "difficulty": "beginner"
     },
     {
-      "question": "Identify the transducer not used for the measurement of temperature.",
+      "question": "3. Identify the transducer not used for the measurement of temperature.",
       "answers": {
         "a": "Thermocouple",
         "b": "RVDT",
@@ -35,7 +35,7 @@
       "difficulty": "beginner"
     },
     {
-      "question": "RTD and Thermistors are _____ transducers.",
+      "question": "4. RTD and Thermistors are _____ transducers.",
       "answers": {
         "a": "Passive and Analog",
         "b": "Passive and digital",
@@ -46,7 +46,7 @@
       "difficulty": "beginner"
     },
     {
-      "question": "The function of the proportional mode is to ____________?",
+      "question": "5. The function of the proportional mode is to ____________?",
       "answers": {
         "a": "Provide Gain",
         "b": "Eliminate Offsets",
@@ -57,7 +57,7 @@
       "difficulty": "beginner"
     },
 	{
-      "question": "The function of the proportional plus integral mode is to ____________?",
+      "question": "6. The function of the proportional plus integral mode is to ____________?",
       "answers": {
         "a": "Provide Gain",
         "b": "Eliminate Offsets",
@@ -69,7 +69,7 @@
     },	
 	
 	{
-      "question": "Gain and proportional bands are",
+      "question": "7. Gain and proportional bands are",
       "answers": {
         "a": "Two different control modes",
         "b": "Reciprocally related",
@@ -81,7 +81,7 @@
     },
 	
 	{
-      "question": "Physical parameters change due to ______",
+      "question": "8. Physical parameters change due to ______",
       "answers": {
         "a": "voltage",
         "b": "internal and external disturbances",
@@ -94,7 +94,7 @@
 	
 	
 	{
-      "question": "What is a process control system?",
+      "question": "9. What is a process control system?",
       "answers": {
         "a": "system to keep the parameters at zero value",
         "b": " system to maintain the parameters constant",
@@ -106,7 +106,7 @@
     },
 	
 	{
-      "question": "What is the main objective of process control?",
+      "question": "10. What is the main objective of process control?",
       "answers": {
         "a": "to control mechanical parameters",
         "b": "to control physical parameters",
