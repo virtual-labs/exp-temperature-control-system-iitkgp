@@ -2,7 +2,7 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "The term Hysteresis is related to",
+      "question": "1. The term Hysteresis is related to",
       "answers": {
         "a": " P-I Control",
         "b": " ON-OFF Control",
@@ -13,7 +13,7 @@
       "difficulty": "beginner"
     },
     {
-      "question": "Temperature coefficient of thermistor is _______.",
+      "question": "2. Temperature coefficient of thermistor is _______.",
       "answers": {
         "a": "Positive or negative  ",
         "b": "Positive",
@@ -24,7 +24,7 @@
       "difficulty": "beginner"
     },
     {
-      "question": "Full form of RTD is",
+      "question": "3. Full form of RTD is",
       "answers": {
         "a": "Resistance Thermistor Detector ",
         "b": "Resistance Temperature Detector",
@@ -35,7 +35,7 @@
       "difficulty": "beginner"
     },
     {
-      "question": "Thermistors are very _____ for narrow range applications and slightly _____ for wide temperature ranges",
+      "question": "4. Thermistors are very _____ for narrow range applications and slightly _____ for wide temperature ranges",
       "answers": {
         "a": "Unstable , linear ",
         "b": " Nonlinear , unstable  ",
@@ -46,7 +46,7 @@
       "difficulty": "beginner"
     },
     {
-      "question": "In which one of the following controllers, the response is fast?",
+      "question": "5. In which one of the following controllers, the response is fast?",
       "answers": {
         "a": "PID ",
         "b": "PI",
@@ -58,7 +58,7 @@
       "difficulty": "beginner"
     },
     {
-      "question": "which one of the following controllers increases the order of the system by one?",
+      "question": "6. which one of the following controllers increases the order of the system by one?",
       "answers": {
         "a": " P-controller ",
         "b": "P-I controller",
@@ -69,7 +69,7 @@
       "difficulty": "beginner"
     },
     {
-      "question": "What is the disadvantage of proportional controller?",
+      "question": "7. What is the disadvantage of proportional controller?",
       "answers": {
         "a": "Provides a constant steady state error  ",
         "b": "Improves stability of the system",
@@ -80,7 +80,7 @@
       "difficulty": "beginner"
     },
     {
-      "question": "A two-position controller (on/off) always",
+      "question": "8. A two-position controller (on/off) always",
       "answers": {
         "a": "Controls around a point ",
         "b": "Controls with a fixed offset",
@@ -91,7 +91,7 @@
       "difficulty": "beginner"
     }, 
     {
-      "question": "Automatic controllers operate on the difference between set point and measurement, which is called",
+      "question": "9. Automatic controllers operate on the difference between set point and measurement, which is called",
       "answers": {
         "a": " Error ",
         "b": "Bias",
@@ -102,7 +102,7 @@
       "difficulty": "beginner"
     },
     {
-      "question": "If the proportional band of the controller is adjusted to the minimum possible value, the control action is likely to be",
+      "question": "10. If the proportional band of the controller is adjusted to the minimum possible value, the control action is likely to be",
       "answers": {
         "a": " On/off ",
         "b": " With maximum offset",
