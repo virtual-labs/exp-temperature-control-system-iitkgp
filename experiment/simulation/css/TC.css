@@ -26,6 +26,10 @@
 /*.col-md-5 img{
     max-width: 100%;
 }*/
+.fontCss{
+font-family:'Bodoni MT';
+font-style:italic;
+}	
 
 .img-container {
     display: inline-block;
@@ -113,6 +117,13 @@
   }
  
  /* css for 2nd col of 1st row of fourth container  */ 
+ #dial1{
+	position:absolute;
+    width:5%;
+	height:10%;
+	top:48.5%;
+	left:74.6%;	 
+ }
  
  #on-off{
 	position:absolute;
@@ -129,7 +140,7 @@
 	left:51.8%;	 
  }
  
- #set-measure{
+ #setm{
 	position:absolute;
     width:5%;
 	height:10%;
@@ -145,7 +156,7 @@
  }
  #temp{
 	 position:absolute;
-	 width:15%;
+	 width:13.5%;
 	 height:12%;
 	 top:13%;
 	 left:81%;
@@ -155,6 +166,18 @@
 	text-align:center;
 	 }
 #seudotemp{
+	visibility:hidden;
+	 position:absolute;
+	 width:15%;
+	 height:12%;
+	 top:50%;
+	 left:85%;
+     background-color:black;
+     color:#A8AFB5;
+	font-weight:bold;
+	text-align:center;
+	 }
+	 #seudotemp2{
 	visibility:hidden;
 	 position:absolute;
 	 width:15%;
@@ -191,9 +214,21 @@
 	text-align:center;
 	 } 
 	 
+	#ambT{    
+    width:20%;
+	font-weight:bold;
+	text-align:center;
+	 } 
 	 
-	 
-	 
+	#ambs{
+	 position:absolute;
+	 width:15%;
+	 height:12%;
+	 top:50%;
+	 left:85%;
+     color:#A8AFB5;
+	font-weight:bold;
+	 }  
 	 
  
  
