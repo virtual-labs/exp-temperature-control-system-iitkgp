@@ -162,7 +162,7 @@ jsPlumb.ready(function () {
              instance.connect({ source: e10, target: e11 });
 			 //delete clicked connection
       instance.bind("click", function (conn, originalEvent) {
-           if ( confirm("Delete connection from " + conn.sourceId + " to " + conn.targetId + "?")) {////for clicking on a connection
+           if ( confirm("Delete connection ?")) {////for clicking on a connection
                instance.deleteConnection(conn);			  
 			         }	
 
@@ -418,23 +418,43 @@ jsPlumb.ready(function () {
 			  
             alert("RIGHT CONNECTION \n Openloop Control");
 			document.getElementById('controltype').value="1";
-			
+			document.getElementById('plot').disabled =false;
+			document.getElementById('tabled').disabled =false;
+			document.getElementById('refresh').disabled =false;
 			
             }
 	    if(is_connected_1_5 && is_connected_10_11 && is_connected_8_9 && !is_connected_2_6 && !is_connected_3_7 && !unallowed_connection_present) {
                alert("RIGHT CONNECTION \n Proportional Control");
 			   document.getElementById('controltype').value="2";
-                
+                document.getElementById('picV').style.display = "block";
+				document.getElementById('Pov').style.display = "block";
+				document.getElementById('controltype').value="1";
+			document.getElementById('plot').disabled =false;
+			document.getElementById('tabled').disabled =false;
+			document.getElementById('refresh').disabled =false;
+				
             }  
 			
 			else if(is_connected_1_5 && is_connected_2_6 && is_connected_10_11 && is_connected_8_9 && !is_connected_3_7 && !unallowed_connection_present) {
                alert("RIGHT CONNECTION \n Proportional Integral Control");
 			   document.getElementById('controltype').value="3";
+			   document.getElementById('picV').style.display = "block";
+				document.getElementById('Pov').style.display = "block";
+				document.getElementById('controltype').value="1";
+			document.getElementById('plot').disabled =false;
+			document.getElementById('tabled').disabled =false;
+			document.getElementById('refresh').disabled =false;
                 
             } 
 			else if(is_connected_1_5 && is_connected_2_6 && is_connected_3_7 && is_connected_10_11 && is_connected_8_9 && !unallowed_connection_present) {
                alert("RIGHT CONNECTION \n Proportional Integral Derivative Control");
 			   document.getElementById('controltype').value="4";
+			   document.getElementById('picV').style.display = "block";
+				document.getElementById('Pov').style.display = "block";
+				document.getElementById('controltype').value="1";
+			document.getElementById('plot').disabled =false;
+			document.getElementById('tabled').disabled =false;
+			document.getElementById('refresh').disabled =false;
                 
             } 
 			
