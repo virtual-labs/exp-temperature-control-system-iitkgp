@@ -1,0 +1,801 @@
+<!-- This HTML page and script files are developed by
+    Piyali Chattopadhyay
+    Project Scientist-Technical,
+    Virtual Labs IIT Kharagpur.-->
+
+<!DOCTYPE html>
+<html lang="en"><!--html tag start-->
+<head>
+    <title>Temperature Control System</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../css/adik.css" rel="stylesheet">
+  
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
+  
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script  src="./js/TC_updated.js">   </script>
+  
+  
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Knob/1.2.13/jquery.knob.min.js"></script>-->
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.2.1/math.js"></script>
+  <script src=" https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.2.1/math.min.js  "></script>
+ <script src="https://unpkg.com/mathjs/lib/browser/math.js"></script>
+ 
+
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"> </script>
+<link rel="stylesheet" href="./css/demo.css">
+<link rel="stylesheet" href="./css/TC.css">
+
+	
+
+
+  <style>
+	<!-- .bluedot{
+	position:absolute;
+    border: 2px solid blue;
+    border-radius:50%;
+    background-color:blue;
+    background-image:linear-gradient(90deg,#0066ff,#00ccff);
+	box-shadow: 5px 5px 8px #888888;
+	}
+	.handlep{
+	position:absolute;
+    border: 2px solid blue;
+    border-radius:50%;
+    background-color:white;
+    background-image:url(./images/plus.png);
+	background-size:cover;
+	background-position:center;
+	
+	}
+	
+	.handlen{
+	position:absolute;
+    border: 2px solid blue;
+    border-radius:50%;
+    background-color:white;
+    background-image:url(./images/minus.jpg);
+	background-size:cover;
+	background-position:center;
+	
+	} -->
+	
+	canvas {	
+	max-width:100%;
+	}
+	
+	.dial {
+position: absolute;
+cursor:pointer;
+    border: 2px solid #212221;
+    border-radius: 50%;
+    background-color: #040605;
+    background-image: linear-gradient(90deg, #8c958d, #d7e9da);
+    box-shadow: 5px 5px 8px #D9DBDB;
+}
+
+.dialhandle {
+	
+position:absolute;
+cursor:pointer;
+background-color: black;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+@-webkit-keyframes glow {
+  from {
+    text-shadow:  0 0 20px #fff, 0 0 30px #0867DF;
+  }
+  
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 30px #023474;
+  }
+}
+
+#dialtick1{
+position:absolute;
+width:50%;
+left:2%;
+top:4%;
+}	
+
+.fontCss{
+font-family:'Bodoni MT';
+font-style:italic;
+}	
+	
+  </style>
+  
+  
+  
+</head>
+<body><!--body tag start-->
+    <div class="container p-3 my-3 text-primary text-center border"><!--First Container under body tag start-->
+        <div class="row"><!--First row under 1st container start-->
+            <div class="col-md-3"><!--First col under 1st row start-->
+                <img class="img-fluid rounded" src="./images/vlabs.png" alt="VLabs logo">
+            </div><!--First col under 1st row end-->
+            <div class="col-md-6"><!--2nd col under 1st row start-->
+                <p class="display-1"> <b> Virtual Labs <br> IIT Kharagpur </b> </p>
+            </div><!--2nd col under 1st row end-->
+            <div class="col-md-3"><!--3rd col under 1st row start-->
+                <img class="img-fluid rounded" src="./images/iitkgp.png" alt="IIT KGP Logo" >
+            </div><!--3rd col under 1st row end-->
+        </div><!--First row under 1st container end-->
+    
+        <hr>
+        <div class="row"><!--2nd row under 1st container start-->
+            <div class="col-md-3"><!--First col under 2nd row start-->
+
+            </div><!--First col under 2nd row end-->
+            <div class="col-md-6"><!--2nd col under 2nd row start-->
+                <p class="h1"> <b>Simulation</b> </p>
+            </div><!--2nd col under 2nd row end-->
+            <div class="col-md-3"><!--3rd col under 2nd row start-->
+
+            </div><!--3rd col under 2nd row end-->
+        </div><!--2nd row under 1st container end-->
+        <hr>
+       
+    </div><!--First Container under body tag end-->
+    
+    
+    <div class="container p-3 my-5 text-left border" style="text-align:justify"><!--3rd Container under body tag start-->
+      <div class="row"><!--First row under 3rd container start-->
+        <div class="col-md-1"></div><!--First col under 3rd container start& end-->
+        <div class="col-md-10"><!--2nd col under 3rd container start-->
+            <p class="text-center bg-success"> <a class="nav-link" data-bs-toggle="tab"  id="instcontrol" style="background-color:#128BD9"  ><span class=" h3 text-dark"> Instructions </span></a>
+              <ol id="inst" style="display:block;height:200px;overflow-y:auto;">
+                      
+<li>Enter your room temperature (&deg;C) in corresponding box under the oven. First open loop control needs to be done on the plant (oven) for system identification and finding out plant open loop transfer function. Hence
+  connect 1-5 (blue connecting dots) and click on the 'Check Connection' button.</li></br>
+
+<li>Click on 'ON' button to switch on the unit (plant) and set the reference temperature to 5&#8451; by rotating the knob beside 'S<sub>2</sub>'
+  switch.</li><br/>
+
+<li> Set P potentiometer to 0.5 which gives k<sub>p</sub> = 10 and input of 5 V to the driver .</li></br>
+
+<li>Put switch 'S<sub>2</sub> to 'MEASURE' position and 'S<sub>1</sub> to 'RUN', click on 'Start' button of the stop watch.</li><br/> 
+
+<li>Click on 'Table' button to observe the room temperature , now take observation by clicking 'Table' button after each 10 sec. until the
+plant temperature becomes stable (two to three temperature values in observation table will be approximately same).</li><br/>
+
+<li>Click on 'Stop' to stop the stop watch.</li><br//>
+
+<li>Click on 'Plot' button to observe temperature (&deg;C) vs. time (sec) curve for open loop control. Click on 'Calculation'.</li><br/>
+
+<li>Calculate dc gain (<span class="fontCss">k</span>) of the plant transfer function using the formula
+ 
+$$\frac{(\ Oven \ final \ temperature \ - \ Entered \ room \ temperature)}{(Reference \ (set) \ temperature \times \ Proportional \ gain \ (ex: \ 0.5 \times \ 20 \ = \ 10)) \times 0.01 \ (\ as \ sensor \ gain \ is \ 10 \ mV/&deg;C)}$$
+
+Enter dc gain value to corresponding box in 'Result block'.</li><br/>
+
+<li>Align the slope line (blue coloured line) with a linear segment of the open loop plot with the help of 'Adjust slope angle', 'Adjust slope length', 'Horizontal movement' and 'Vertical movement'
+buttons.<li/><br/>
+
+ <li>Click on clockwise arrow symbol on 'Adjust slope angle' button to rotate the slope line in clockwise direction.
+	Click on counter-clockwise arrow symbol on 'Adjust slope angle' button to rotate the slope line in anti clockwise direction.
+	
+	Click on plus symbol on 'Adjust slope length' button to increase the length of the slope line.
+	Click on minus symbol on 'Adjust slope length' button to decrease the length of the slope line.
+	
+	Click on the arrow symbol in the left side on 'Horizontal movement' button to move the slope line to the right.
+	Click on the arrow symbol in the right side on 'Horizontal movement' button to move the slope line to the left.
+	
+	Click on the arrow symbol in the left side on 'Vertical movement' button to move the slope line to the upwards direction.
+	Click on the arrow symbol in the right side on 'Vertical movement' button to move the slope line to the downwards direction.							
+	
+</li><br/>
+
+<li>To get the time constant (<span class="fontCss">T<sub>1</sub></span>) and delay time (<span class="fontCss">T<sub>2</sub></span>) observe the intersection points of slope line with the 
+horizontal red line (drawn from final temperature value) and x-axis (explained in procedure section). Enter those values in
+corresponding boxes under 'Result block' and click on 'Submit' button to get the plant transfer function. Plot can be downloaded
+by clicking on 'Download' button.</li></br>
+
+<li>Click on 'Clear' button and reset the stop watch. Switch off the unit. Wait untill the oven temperature reaches the room temperature.</li></br>
+
+<li>Switch on the unit. Set the reference temperature to 60&#8451; now. Set P potentiometer to 0.7. Connect 1-5, 8-9 for proportional control and click on the 'Check Connection' button.
+ Follow the steps 4 to 7 to observe temperature (&deg;C) vs. time (sec) curve for proportional control. After plotting click on 'Calculation' to 
+ calculate corresponding results (&percnt; steady state error and &percnt; overshoot) under 'Result block'.
+ Click on 'Clear' button and reset the stop watch. Switch off the unit. Wait untill the oven temperature reaches the room temperature.
+ </li></br>
+
+<li>Switch on the unit. Set P potentiometer to 0.6 and I potentiometer to 0.8 now. Connect 1-5, 8-9, 2-6 for proportional integral control and click on the 'Check Connection' button.
+ Follow the steps 4 to 7 to observe temperature (&deg;C) vs. time (sec) curve for proportional integral control. After plotting click on 'Calculation' to 
+ calculate corresponding results (&percnt; steady state error and &percnt; overshoot) under 'Result block'.</li><br/>
+ 
+<li>Switch on the unit. Similarly, set P potentiometer to 0.8, I potentiometer to 1.0 and D potentiometer to 0.3 now. Connect 1-5, 8-9, 2-6, 3-7 for proportional integral derivative control and click on the 'Check Connection' button.
+ Follow the steps 4 to 7 to observe temperature (&deg;C) vs. time (sec) curve for proportional integral derivative control. After plotting click on 'Calculation' to 
+ calculate corresponding results (&percnt; steady state error and &percnt; overshoot) under 'Result block'.
+ Click on 'Clear' button and reset the stop watch. Switch off the unit. Bring back all the knobs to zero value.</li><br/>
+
+
+						 
+		   </ol>
+            </p> 
+          </div><!--2nd col under 3rd container end-->
+        <div class="col-md-1"></div><!--3rd col under 3rd container start& end-->
+      </div><!--First row under 3rd container end-->
+    </div><!--3rd Container under body tag end-->
+	
+    <div class="container p-3 my-5 text-center border" id="canvas" ><!--Fourth container under body tag start-->
+	
+		<div class="row my-5 gy-2"><!--- 2nd row under fourth container start--->
+        
+        <div class="col-md-8" ><!--2nd col under 2nd row start -->
+          <!-- Code Start here--> 
+        <div class="img-container"><!--img container div start-->
+		
+		<!--<input type="number" id="ambtemp" min="0" max="70" step="0.1"  value="30.2"  ><span style="position:absolute;">Enter the value of Ambient Temperature</span>-->
+		<img class="img-fluid " id="controller" src="images/controller.png " />
+		<!-- <img  id="dial1" src="images/dial.png " /> -->
+		<!--<img class="img-fluid switch" id="red_switch" onclick="OnOff()" value="off" src="./images/red_switch.png " style="cursor:pointer;" />
+		
+		<!---knob 1 1st col 1st row--------->
+		<!-- <div class="bluedot" id="knob1" style=" width:13%;height:25%;top:15%;left:7%;pointer-events:none;">
+		<div class="handlep" id="knob1p" onclick="rotate1()"style="width:30%;height:30%;top:33%;left:0%;"></div>
+		<div class="handlen" id="knob1n"onclick="rotate2()" style="width:30%;height:30%;top:33%;left:70%;"></div>
+		</div> -->
+		<div id="knob1" class="dial"  style=" width:13%;height:25%;top:15%;left:7%;pointer-events:none;">
+		<div class="dialhandle" style="width:20%;height:5%;top:85%;left:20%;transform:rotate(304deg)"></div>				
+		</div>
+		<input type="number" id="P" min="0" value="0" max="1" step="0.1" style="position: absolute;width:6%;top: 27%;left: 11%;text-align: center;background: transparent;border: none;z-index: 1;font-size: small;"readonly=readonly>
+		
+		<!---knob 2 1st col 1st row--------->
+		<!-- <div class="bluedot" id="knob2" style=" width:13%;height:25.4%;top:15%;left:20.8%;pointer-events:none;">
+		<div class="handlep" id="knob2p" onclick="rotate3()"style="width:30%;height:30%;top:33%;left:0%;"></div>
+		<div class="handlen" id="knob2n"onclick="rotate4()" style="width:30%;height:30%;top:33%;left:70%;"></div>
+		</div> -->
+		<div id="knob2" class="dial"  style=" width:13%;height:25%;top:15%;left:20.8%;pointer-events:none;">
+		<div class="dialhandle" style="width:20%;height:5%;top:85%;left:20%;transform:rotate(304deg)"></div>				
+		</div>
+		<input type="number" id="I" min="0" value="0" max="1" step="0.1" style="position: absolute;width:6%;top: 27%;left: 25%;text-align: center;background: transparent;border: none;z-index: 1;font-size: small;"readonly=readonly>
+		
+		<!---knob 3 1st col 1st row--------->
+		<!-- <div class="bluedot" id="knob3" style=" width:13%;height:25%;top:15%;left:35%;pointer-events:none;">
+		<div class="handlep" id="knob3p" onclick="rotate5()"style="width:30%;height:30%;top:33%;left:0%;"></div>
+		<div class="handlen" id="knob3n"onclick="rotate6()" style="width:30%;height:30%;top:33%;left:70%;"></div>
+		</div> -->	
+		<div id="knob3" class="dial"  style=" width:13%;height:25%;top:15%;left:35%;pointer-events:none;">
+		<div class="dialhandle" style="width:20%;height:5%;top:85%;left:20%;transform:rotate(304deg)"></div>				
+		</div>
+		<input type="number" id="D" min="0" value="0" max="1" step="0.1" style="position: absolute;width:6%;top: 27%;left: 39%;text-align: center;background: transparent;border: none;z-index: 1;font-size: small;"readonly=readonly>
+		
+
+		<!---knob 4 1st col 1st row--------->
+		<!-- <div class="bluedot" id="knob4" style=" width:10%;height:20%;top:10%;left:61%;pointer-events:none;">
+		<div class="handlep" id="knob4p" onclick="rotate7()"style="width:30%;height:30%;top:33%;left:0%;"></div>
+		<div class="handlen" id="knob4n"onclick="rotate8()" style="width:30%;height:30%;top:33%;left:70%;"></div>
+		</div> -->
+		<div id="knob4" class="dial"  style=" width:10%;height:20%;top:10%;left:61%;pointer-events:none;">
+		<div class="dialhandle" style="width:20%;height:5%;top:85%;left:20%;transform:rotate(304deg)"></div>				
+		</div>
+		
+		<input type="number" id="temp" min="0" max="100" step="5" value="0" readonly=readonly>
+		<input type="number" id="seudotemp" min="0" max="100" step="5" value="5" readonly=readonly >
+		<input type="number" id="seudotemp2" min="0" max="100" step="5" value="5" readonly=readonly >
+		<input type="number" id="controltype" min="1" max="4" step="1" value="1" readonly=readonly >
+		
+		<img class="img-fluid " onclick="OnOff()" id="on-off" src="./images/off.png " />
+		<img class="img-fluid " id="Hi-Lo" src="images/Hi.png " />
+		<img class="img-fluid " onclick="SetMeasure()" id="setm" src="images/off.png " />
+		<img class="img-fluid " onclick="RunWait()" id="run-wait" src="./images/on.png " />
+		
+		
+		
+			<div id="bd1"></div> 
+			<div id="bd2"></div>
+			<div id="bd3"></div>
+			<div id="bd4"></div>
+			<div id="bd5"></div>
+			<div id="bd6"></div>
+			<div id="bd7"></div>
+			<div id="bd8"></div>
+			<div id="bd9"></div>
+			<div id="bd10"></div>
+  
+        </div><!--img container div end--><br>
+			<button type="button" id="check" class="btn btn-primary" >Check Connection</button>
+			<button type="button" id="plot"  onclick="plot()" class="btn btn-primary" disabled="true">Plot</button>
+			<button type="button" id="tabled" onclick="createTable()" class="btn btn-primary" disabled="true" >Table</button>
+			<button type="button" id="refresh" onclick="Refresh()" class="btn btn-primary" disabled="true">Clear</button>
+	</div><!---end of 2nd col under 2nd row--->
+	
+	<!----->
+        <div class="col-md-4"><!--3rd col under 2nd row start-->
+          <!-- Code Start here-->
+		 <div class="img-container"><!--img container div start--> 
+		 <img class="img-fluid" id="oven" onclick="incrspeed()" src="./images/OVEN.png "/>
+		 
+		 <div id="bd11"></div> 
+		
+		</div><br/>
+		
+		<span >Enter your room temperature (&deg;C) :&nbsp;<input type="number" id="ambT" value="28.2"></span>
+		</div>
+		
+	
+
+	
+
+	
+        </div><!--2nd row under fourth container end-->
+
+ 
+        
+	<div class="row my-5 gy-2"><!--- 4th row under fourth container start--->
+	
+		
+        <div class="col-md-6 "><!--1st col under 4th row start -->	
+		
+		
+			<table id="myTable" style="width:100%">
+			
+				
+				  <tr>
+					<th>Sl No.</th>
+					<th>Time(sec)</th> 
+					<th>Temperature(&#8451;)</th>
+					
+				  </tr>
+				  
+			</table>
+			
+		</div><!--1st col under 4th row end -->
+		
+		<div class="col-md-6 "><!--2nd col under 4th row start -->	
+		
+		<!-------------------------------Stop Watch------------------------------------->
+			<div id="stopwatchd" class="card border-primary rounded" style="display: block;" >
+				<div class="card-body" style="background-color:#F5EC5F;">
+			 
+					<p class="card-text" style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Stop Watch</p>
+					<p class="timerDisplay"><span id="seconds">00</span>:<span id="tens">00</span></p>
+					 <div class="timerunit ">
+					 sec : ms
+					</div>
+					 
+					  <button type="button" id="button-start" onclick="startwatch()" class="btn btn-success ">Start </button>
+					  <button id="button-stop" type="button" onclick="stopwatch()"  class="btn btn-danger ">Stop </button>
+					  <button id="button-reset"  onclick="resetwatch()" class="btn btn-primary ">Reset</button>
+					 
+
+
+				</div>
+			</div>			
+		
+		<!----------------------------------------------------------------------------------->	
+		</div><!--2nd col under 4th row end -->			
+		
+	</div><!--- 4th row under fourth container end--->	
+
+
+	 <div class="row justify-content-center"><!-----------------------graph T vs. w----------------------------------------->
+		
+	 
+			<div class="col-md-12">
+				<div id = "plotbucket" class="content-center" style="position:relative;display:none; height:530px;width:100% ">
+				<button type="button" id="exportChart" class="btn btn-primary"  style="display:none;position:absolute;left:20%;">Download</button>
+				<button type="button" id="result" class="btn btn-danger" onclick="showcalcDiv()"  style="display:none;position:absolute;left:30%">Calculation</button><br/><br/>
+					
+				<button type="button" id="btnangl"  class="btn btn-success p-2" style="visibility:hidden;">
+					 <i class="bi bi-arrow-clockwise"  onclick="rotateLine()" style="color:white"></i>&nbsp;Adjust slope angle&nbsp;<i class="bi bi-arrow-counterclockwise"  onclick="rotateLineRev()" style="color:white"></i>
+					</button>
+					<button type="button"  id="btnlngth" class="btn btn-success p-2" style="visibility:hidden;">
+					 <i class="bi bi-plus"  onclick="InLine()" style="color:white"></i>&nbsp;Adjust slope length&nbsp;<i class="bi bi-dash"  onclick="DeLine()" style="color:white"></i>
+					</button>
+					
+					<button type="button" id="btnhpos" class="btn btn-primary  p-2" style="visibility:hidden;">
+					 <i class="bi bi-arrow-right"  onclick="moveL()" style="color:white"></i>&nbsp;Horizontal movement&nbsp;<i class="bi bi-arrow-left"  onclick="moveR()" style="color:white"></i>
+					</button>
+					
+					<button type="button" id="btnvpos" class="btn btn-primary  p-2" style="visibility:hidden;">
+					 <i class="bi bi-arrow-up"  onclick="moveD()" style="color:white"></i>&nbsp;Vertical movement&nbsp;<i class="bi bi-arrow-down"  onclick="moveT()" style="color:white"></i>
+					</button>
+					<div id="slopeline" style="display:none;position:absolute;width:0.5%;height:80%;left:10%;top:20%;z-index:3;border:1px solid blue; background-color:blue"></div>
+								
+									
+				<div id="chartContainer"  style="display:none; position:absolute; height: 70%; width: 70%;left:13%;z-index:1 "></div>
+					
+				</div>
+				
+			</div>
+			</div>
+			
+			
+			
+		<div class="row justify-content-center my-2">	
+			<div class="col-md-12">
+			
+			<div id = "calcbucket"  class="card">
+			<div id="oltf" class="card-body" style="display:none"><br/>
+			<span class="card-title"><b>Result block</b></span><br/><br/>
+			<span class="card-text">Enter the value of dc gain (<span class="fontCss">k</span>) : <input type="number" id="dcgain" value="0" style="text-align:center;width:20%"></span><br/><br/>
+			<span class="card-text">Enter the value of time constant (<span class="fontCss">T</span><sub>1</sub>) : <input type="number" id="tau" value="0" style="text-align:center;width:20%"></span><br/><br/>
+			<span class="card-text">Enter the value of delay time (<span class="fontCss">T</span><sub>2</sub>) : <input type="number" id="delaytime" value="0" style="text-align:center;width:20%"></span><br/><br/>
+			
+			<button class="btn btn-success" onclick = "calc()">Submit</button><br/><br/>			
+			
+			<span class="card-text"><b>Plant Transfer Function</b></span><br/><br/>
+			
+			<span class="card-text" style="position:absolute;width: 6%;left: 38%;top: 87%;font-size:20px;"><span class="fontCss">G</span>(s) =</span>
+			<span class="card-text" ><input  type="number" id="tfn1" value="0" readonly=readonly style="position:absolute;top:79%;left:46%;width:8%;text-align:center"><span class="fontCss" style="position:absolute;width: 25%;left:42%;top:76%;font-size:23px">&nbsp;e</span></span>
+			<span style="position:absolute;width: 24%;left:48%;top:72%;"><span class="fontCss" style="font-size:23px;">-s</span>&nbsp;<input  type="number" id="tfn" value="0" readonly=readonly style="width:30%;text-align:center"></span><br/>
+			<hr  style="position:absolute;width: 20%;left:45%;top:85%;"><br/><br/>
+			<span class="card-text" style="position:absolute;width: 25%;left:40.5%;top:90%;" >1 +&nbsp;<span class="fontCss" style="font-size:23px;">s</span>&nbsp;<input type="number" id="tfd" value="0" readonly=readonly style="width:40%;text-align:center"></span>	
+				
+				
+				
+				<!-- <span class="card-text"><b style="position:absolute;width: 25%;left: 27%;top: 82%;font-size:20px;"><span class="fontCss">G</span>(s) =</b></span> 
+				
+				<span class="card-text" ><b style="position:absolute;width: 25%;left:37%;top: 75%; "><input  type="number" id="tfn1" value="0" readonly=readonly style="width:30%;text-align:center">&nbsp;<b>e</b></span>
+				
+				<span style="position:absolute;width: 25%;left:42.5%;top:72%;" >
+				<b class="fontCss" style="font-size:23px;">-s</b>&nbsp;<input  type="number" id="tfn" value="0" readonly=readonly style="width:30%;text-align:center"></span><br/>
+			
+			<hr  style="position:absolute;width: 20%;left:43%;top:82%;"><br/><br/>
+			
+			<span class="card-text" style="position:absolute;width: 25%;left:40.5%;top:88%;font-size:20px;" ><b>1 +&nbsp;<span class="fontCss" style="font-size:23px;">s</span>&nbsp;<input type="number" id="tfd" value="0" readonly=readonly style="width:40%;text-align:center"></span>
+			 --><br/><br/>			
+			</div>
+			</div>
+			
+			<div id="Presult" class="card" style="display:none;background-color:powderblue">
+			<div class="card-body"><br/>
+			<span class="card-title"><b>Result block</b></span><br/><br/>
+			<span class="card-text">Enter the final value of oven temperature (&deg;C) : <input type="number" id="fv" value="0" style="text-align:center;width:20%"></span><br/><br/>
+			<span class="card-text"id="picV">Enter the Peak value of oven temperature (&deg;C) : <input type="number" id="tp" value="0" style="text-align:center;width:20%"></span><br/><br/>
+			
+			<span class="card-text">&percnt; Steady state error : <input type="number" id="ess" value="0" style="text-align:center;width:20%" readonly=readonly></span><br/><br/>
+			<span class="card-text" id = "Pov">&percnt; Overshoot : <input type="number" id="ov" value="0" style="text-align:center;width:20%"readonly=readonly></span><br/>
+			<button type="button" id="calculate" class="btn btn-primary" onclick="calc()"  style="display:none;">OK</button>
+			
+			</div>
+			</div>
+			</div>
+		
+	</div>	
+          <!-- Code End here-->
+        </div><!--Fourth container under body tag end-->
+          
+   
+    </div>
+
+    <div class="container p-3 my-5 text-primary text-center border"><!--Last and fifth container under body tag start-->
+      <div class="row">
+        <footer>
+          <div class="row ce">
+            <div class="col-sm-12">
+              <p class="h5"><i> Copyright ©2022 <a href="http://vlabs.iitkgp.ac.in/vlt/">Virtual Labs IIT Kharagpur</a> </i><br><br>
+              <a href="../../license/index.html" target="_blank"> Licensing Terms </a>
+            </p>
+            </div>
+          </div>
+        </footer>
+      </div>
+  </div><!--Last and fifth container under body tag end-->
+  
+   <script src="./js/jsPlumb.js"></script>	
+	<script src="./js/demo.js"> </script>
+<script>
+
+var knobPositionX;
+      var knobPositionY;
+      var mouseX;
+      var mouseY;
+      var knobCenterX;
+      var knobCenterY;
+      var adjacentSide;
+      var oppositeSide;
+      var currentRadiansAngle;
+      var getRadiansInDegrees;
+      var finalAngleInDegrees;
+      var volumeSetting;
+      //var tickHighlightPosition;
+      //var audio = new Audio("https://www.cineblueone.com/maskWall/audio/skylar.mp3"); //Celine Dion's "Ashes"
+      //var startingTickAngle = -135;
+      //var tickContainer = document.getElementById("tickContainer");
+      var knob1 = document.getElementById("knob1");
+	  var knob2 = document.getElementById("knob2");
+	  var knob3 = document.getElementById("knob3");
+	  var knob4 = document.getElementById("knob4");
+	   
+      var boundingRectangle1 = knob1.getBoundingClientRect(); //get rectangular geometric data of knob (x, y, width, height)
+	  var boundingRectangle2 = knob2.getBoundingClientRect();
+	  var boundingRectangle3 = knob3.getBoundingClientRect();
+	  var boundingRectangle4 = knob4.getBoundingClientRect();
+
+      function main1()
+      {
+          knob1.addEventListener(getMouseDown(), onMouseDown1); //listen for mouse button click
+          document.addEventListener(getMouseUp(), onMouseUp1); //listen for mouse button release
+	  }
+	  function main2()
+      {
+          knob2.addEventListener(getMouseDown(), onMouseDown2); //listen for mouse button click
+          document.addEventListener(getMouseUp(), onMouseUp2); //listen for mouse button release
+	  }
+	  function main3()
+      {
+          knob3.addEventListener(getMouseDown(), onMouseDown3); //listen for mouse button click
+          document.addEventListener(getMouseUp(), onMouseUp3); //listen for mouse button release
+	  }
+	  function main4()
+      {
+          knob4.addEventListener(getMouseDown(), onMouseDown4); //listen for mouse button click
+          document.addEventListener(getMouseUp(), onMouseUp4); //listen for mouse button release
+	  }
+
+      //on mouse buttons down
+      function onMouseDown1()
+      {
+	  document.addEventListener(getMouseMove(), onMouseMove1); //start drag
+      }	  
+	  function onMouseDown2()
+      {
+	  document.addEventListener(getMouseMove(), onMouseMove2); //start drag
+      }
+	  function onMouseDown3()
+      {
+	  document.addEventListener(getMouseMove(), onMouseMove3); //start drag
+      }
+	  function onMouseDown4()
+      {
+	  document.addEventListener(getMouseMove(), onMouseMove4); //start drag
+      }
+
+      //on mouse buttons release
+      function onMouseUp1()
+      {
+          document.removeEventListener(getMouseMove(), onMouseMove1); //stop drag
+      }
+	  function onMouseUp2()
+      {
+          document.removeEventListener(getMouseMove(), onMouseMove2); //stop drag
+      }
+	  function onMouseUp3()
+      {
+          document.removeEventListener(getMouseMove(), onMouseMove3); //stop drag
+      }
+	  function onMouseUp4()
+      {
+          document.removeEventListener(getMouseMove(), onMouseMove4); //stop drag
+      }
+
+      //compute mouse angle relative to center of volume knob
+      //For clarification, see my basic trig explanation at:
+      //https://www.quora.com/What-is-the-significance-of-the-number-pi-to-the-universe/answer/Kevin-Lam-15
+      function onMouseMove1(event)
+      {	  
+          knobPositionX = boundingRectangle1.left; //get knob's global x position
+          knobPositionY = boundingRectangle1.top; //get knob's global y position
+
+          if(detectMobile() == "desktop")
+          {
+              mouseX = event.pageX; //get mouse's x global position
+              mouseY = event.pageY; //get mouse's y global position
+          } else {
+              mouseX = event.touches[0].pageX; //get finger's x global position
+              mouseY = event.touches[0].pageY; //get finger's y global position
+          }
+
+          knobCenterX = boundingRectangle1.width / 2 + knobPositionX; //get global horizontal center position of knob relative to mouse position
+          knobCenterY = boundingRectangle1.height / 2 + knobPositionY; //get global vertical center position of knob relative to mouse position
+
+          adjacentSide = knobCenterX - mouseX; //compute adjacent value of imaginary right angle triangle
+          oppositeSide = knobCenterY - mouseY; //compute opposite value of imaginary right angle triangle
+
+          //arc-tangent function returns circular angle in radians
+          //use atan2() instead of atan() because atan() returns only 180 degree max (PI radians) but atan2() returns four quadrant's 360 degree max (2PI radians)
+          currentRadiansAngle = Math.atan2(adjacentSide, oppositeSide);
+
+          getRadiansInDegrees = currentRadiansAngle * 180 / Math.PI; //convert radians into degrees
+
+          finalAngleInDegrees = -(getRadiansInDegrees - 135); //knob is already starting at -135 degrees due to visual design so 135 degrees needs to be subtracted to compensate for the angle offset, negative value represents clockwise direction
+
+          //only allow rotate if greater than zero degrees or lesser than 270 degrees
+          if(finalAngleInDegrees >= 0 && finalAngleInDegrees <= 300)
+          {
+              knob1.style.transform = "rotate(" + finalAngleInDegrees + "deg)"; //use dynamic CSS transform to rotate volume knob
+
+              //270 degrees maximum freedom of rotation / 100% volume = 1% of volume difference per 2.7 degrees of rotation
+              volumeSetting = Math.round(finalAngleInDegrees / (300 / 100));
+              var voltValue = volumeSetting * (1/100); 
+              document.getElementById("P").value = Math.floor(voltValue *10)/10 ;//+ "%"; //update volume text
+          }
+      }
+
+///knob2/////
+function onMouseMove2(event)
+      {
+          knobPositionX = boundingRectangle2.left; //get knob's global x position
+          knobPositionY = boundingRectangle2.top; //get knob's global y position
+
+          if(detectMobile() == "desktop")
+          {
+              mouseX = event.pageX; //get mouse's x global position
+              mouseY = event.pageY; //get mouse's y global position
+          } else {
+              mouseX = event.touches[0].pageX; //get finger's x global position
+              mouseY = event.touches[0].pageY; //get finger's y global position
+          }
+
+          knobCenterX = boundingRectangle2.width / 2 + knobPositionX; //get global horizontal center position of knob relative to mouse position
+          knobCenterY = boundingRectangle2.height / 2 + knobPositionY; //get global vertical center position of knob relative to mouse position
+
+          adjacentSide = knobCenterX - mouseX; //compute adjacent value of imaginary right angle triangle
+          oppositeSide = knobCenterY - mouseY; //compute opposite value of imaginary right angle triangle
+
+          //arc-tangent function returns circular angle in radians
+          //use atan2() instead of atan() because atan() returns only 180 degree max (PI radians) but atan2() returns four quadrant's 360 degree max (2PI radians)
+          currentRadiansAngle = Math.atan2(adjacentSide, oppositeSide);
+
+          getRadiansInDegrees = currentRadiansAngle * 180 / Math.PI; //convert radians into degrees
+
+          finalAngleInDegrees = -(getRadiansInDegrees - 135); //knob is already starting at -135 degrees due to visual design so 135 degrees needs to be subtracted to compensate for the angle offset, negative value represents clockwise direction
+
+          //only allow rotate if greater than zero degrees or lesser than 270 degrees
+          if(finalAngleInDegrees >= 0 && finalAngleInDegrees <= 300)
+          {
+              knob2.style.transform = "rotate(" + finalAngleInDegrees + "deg)"; //use dynamic CSS transform to rotate volume knob
+
+              //270 degrees maximum freedom of rotation / 100% volume = 1% of volume difference per 2.7 degrees of rotation
+              volumeSetting = Math.round(finalAngleInDegrees / (300 / 100));
+              var voltValue = volumeSetting * (1/100); 
+              document.getElementById("I").value = Math.floor(voltValue *10)/10 ;//+ "%"; //update volume text
+              
+             // document.getElementById("volumeValue").innerHTML = volumeSetting + "%"; //update volume text
+          }
+      }
+	  
+	  ///knob3/////
+function onMouseMove3(event)
+      {
+          knobPositionX = boundingRectangle3.left; //get knob's global x position
+          knobPositionY = boundingRectangle3.top; //get knob's global y position
+
+          if(detectMobile() == "desktop")
+          {
+              mouseX = event.pageX; //get mouse's x global position
+              mouseY = event.pageY; //get mouse's y global position
+          } else {
+              mouseX = event.touches[0].pageX; //get finger's x global position
+              mouseY = event.touches[0].pageY; //get finger's y global position
+          }
+
+          knobCenterX = boundingRectangle3.width / 2 + knobPositionX; //get global horizontal center position of knob relative to mouse position
+          knobCenterY = boundingRectangle3.height / 2 + knobPositionY; //get global vertical center position of knob relative to mouse position
+
+          adjacentSide = knobCenterX - mouseX; //compute adjacent value of imaginary right angle triangle
+          oppositeSide = knobCenterY - mouseY; //compute opposite value of imaginary right angle triangle
+
+          //arc-tangent function returns circular angle in radians
+          //use atan2() instead of atan() because atan() returns only 180 degree max (PI radians) but atan2() returns four quadrant's 360 degree max (2PI radians)
+          currentRadiansAngle = Math.atan2(adjacentSide, oppositeSide);
+
+          getRadiansInDegrees = currentRadiansAngle * 180 / Math.PI; //convert radians into degrees
+
+          finalAngleInDegrees = -(getRadiansInDegrees - 135); //knob is already starting at -135 degrees due to visual design so 135 degrees needs to be subtracted to compensate for the angle offset, negative value represents clockwise direction
+
+          //only allow rotate if greater than zero degrees or lesser than 270 degrees
+          if(finalAngleInDegrees >= 0 && finalAngleInDegrees <= 300)
+          {
+              knob3.style.transform = "rotate(" + finalAngleInDegrees + "deg)"; //use dynamic CSS transform to rotate volume knob
+
+              //270 degrees maximum freedom of rotation / 100% volume = 1% of volume difference per 2.7 degrees of rotation
+              volumeSetting = Math.round(finalAngleInDegrees / (300 / 100));
+              var voltValue = volumeSetting * (1/100); 
+              document.getElementById("D").value = Math.floor(voltValue *10)/10 ;//+ "%"; //update volume text
+              
+             // document.getElementById("volumeValue").innerHTML = volumeSetting + "%"; //update volume text
+          }
+      }
+	  
+	  ///knob4/////
+function onMouseMove4(event)
+      {		
+	 
+          knobPositionX = boundingRectangle4.left; //get knob's global x position
+          knobPositionY = boundingRectangle4.top; //get knob's global y position
+
+          if(detectMobile() == "desktop")
+          {
+              mouseX = event.pageX; //get mouse's x global position
+              mouseY = event.pageY; //get mouse's y global position
+          } else {
+              mouseX = event.touches[0].pageX; //get finger's x global position
+              mouseY = event.touches[0].pageY; //get finger's y global position
+          }
+
+          knobCenterX = boundingRectangle4.width / 2 + knobPositionX; //get global horizontal center position of knob relative to mouse position
+          knobCenterY = boundingRectangle4.height / 2 + knobPositionY; //get global vertical center position of knob relative to mouse position
+
+          adjacentSide = knobCenterX - mouseX; //compute adjacent value of imaginary right angle triangle
+          oppositeSide = knobCenterY - mouseY; //compute opposite value of imaginary right angle triangle
+
+          //arc-tangent function returns circular angle in radians
+          //use atan2() instead of atan() because atan() returns only 180 degree max (PI radians) but atan2() returns four quadrant's 360 degree max (2PI radians)
+          currentRadiansAngle = Math.atan2(adjacentSide, oppositeSide);
+
+          getRadiansInDegrees = currentRadiansAngle * 180 / Math.PI; //convert radians into degrees
+
+          finalAngleInDegrees = -(getRadiansInDegrees - 135); //knob is already starting at -135 degrees due to visual design so 135 degrees needs to be subtracted to compensate for the angle offset, negative value represents clockwise direction
+
+          //only allow rotate if greater than zero degrees or lesser than 270 degrees
+          if(finalAngleInDegrees >= 0 && finalAngleInDegrees <= 300)
+          {
+              knob4.style.transform = "rotate(" + finalAngleInDegrees + "deg)"; //use dynamic CSS transform to rotate volume knob
+
+              //270 degrees maximum freedom of rotation / 100% volume = 1% of volume difference per 2.7 degrees of rotation
+              volumeSetting = Math.round(finalAngleInDegrees / (300 / 100));
+              var voltValue = volumeSetting * (100/100); 
+              document.getElementById("temp").value = voltValue;//+ "%"; //update volume text
+               document.getElementById("seudotemp").value = voltValue;
+             // document.getElementById("volumeValue").innerHTML = volumeSetting + "%"; //update volume text
+          }
+		  
+		 
+      }
+    
+      //detect for mobile devices from https://www.sitepoint.com/navigator-useragent-mobiles-including-ipad/
+      function detectMobile()
+      {
+          var result = (navigator.userAgent.match(/(iphone)|(ipod)|(ipad)|(android)|(blackberry)|(windows phone)|(symbian)/i));
+
+          if(result !== null)
+          {
+              return "mobile";
+          } else {
+              return "desktop";
+          }
+      }
+
+      function getMouseDown()
+      {
+          if(detectMobile() == "desktop")
+          {
+              return "mousedown";
+          } else {
+              return "touchstart";
+          }
+      }
+
+      function getMouseUp()
+      {
+          if(detectMobile() == "desktop")
+          {
+              return "mouseup";
+          } else {
+              return "touchend";
+          }
+      }
+
+      function getMouseMove()
+      {
+          if(detectMobile() == "desktop")
+          {
+              return "mousemove";
+          } else {
+              return "touchmove";
+          }
+      }
+
+      main1();
+	  main2();
+	  main3();
+	  main4();
+
+</script>	
+	
+<script src="../assets/js/iframeResize.js"></script></body><!--body tag end-->
+</html><!--html tag end-->

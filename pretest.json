@@ -1,0 +1,122 @@
+{
+  "version": 2.0,
+  "questions": [
+    {
+      "question": "1. A Temperature Control System is known as:",
+      "answers": {
+        "a": "Process Control System",
+        "b": "Servomechanism",
+        "c": "Cascade Control System",
+        "d": "None of The above"
+      },
+      "correctAnswer": "a",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "2. The time constant of a servo control system can be decreased by",
+      "answers": {
+        "a": "Decreasing the inertia of the system",
+        "b": "Decreasing the damping of the system",
+        "c": "Both of the above",
+        "d": "None of the above"
+      },
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "3. Identify the transducer not used for the measurement of temperature.",
+      "answers": {
+        "a": "Thermocouple",
+        "b": "RVDT",
+        "c": "RTD",
+        "d": "Pyrometer"
+      },
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "4. RTD and Thermistors are _____ transducers.",
+      "answers": {
+        "a": "Passive and analog",
+        "b": "Passive and digital",
+        "c": "Active and digital",
+        "d": "Active and analog"
+      },
+      "correctAnswer": "a",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "5. The function of the proportional mode is to ____________?",
+      "answers": {
+        "a": "Provide Gain",
+        "b": "Eliminate Offsets",
+        "c": "To speed up the response and minimize the overshoot",
+        "d": "All of the above"
+      },
+      "correctAnswer": "a",
+      "difficulty": "beginner"
+    },
+	{
+      "question": "6. The function of the proportional plus integral mode is to ____________?",
+      "answers": {
+        "a": "Provide Gain",
+        "b": "Eliminate Offsets",
+        "c": "To speed up the response and minimize the overshoot",
+        "d": "All of the above"
+      },
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },	
+	
+	{
+      "question": "7. Gain and proportional bands are",
+      "answers": {
+        "a": "Two different control modes",
+        "b": "Reciprocally related",
+        "c": "Adjusted independently of one another",
+        "d": "Controller functions calibrated in time units"
+      },
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+	
+	{
+      "question": "8. The term reset control refers to ____ control",
+      "answers": {
+        "a": "Derivative",
+        "b": "Integral",
+        "c": "Proportional",
+        "d": "None of the above"
+      },
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+	
+	
+	{
+      "question": "9. Which of the following is an active transducer ?",
+      "answers": {
+        "a": "Strain gauge",
+        "b": "Thermistor",
+        "c": "LVDT",
+        "d": "Thermocouple"
+      },
+      "correctAnswer": "d",
+      "difficulty": "beginner"
+    },
+	
+	{
+      "question": "10. In which one of the following temperature sensors, the excitation or power is needed?",
+      "answers": {
+        "a": "Thermocouple",
+        "b": "Semiconductor temperature sensor",
+        "c": "Thermistor",
+        "d": "None of the above"
+      },
+      "correctAnswer": "c",
+      "difficulty": "beginner"
+    }
+	
+  ]
+}
+
