@@ -4,14 +4,14 @@
 <div align="center">
 <img class="img-fluid" id="proimg" src="./images/fig1.png" alt="">
 
-<b>Fig 1: Block diagram of the Temperature Controller</b>
+<b>Fig. 1. Block diagram of the Temperature Controller</b>
 </div>
 
 
 <div align="center">
 <img class="img-fluid"  src="./images/simu.png" alt="">
 
-<b>Fig 2: Circuit diagram of experimental setup for Temperature Control System simulation</b>
+<b>Fig. 2. Circuit diagram of experimental setup for Temperature Control System simulation</b>
 </div>
 
 
@@ -59,7 +59,7 @@ Click on the arrow symbol in the right side on 'Vertical movement' button to mov
 <div align="center">
 <img class="img-fluid"  src="./images/oltf.png" alt="">
 
-<b>Fig 3: Calculation of time constant (<span class="fontCss">T<sub>1</sub></span>) and delay time (<span class="fontCss">T<sub>2</sub></span>)</b>
+<b>Fig. 3. Calculation of time constant (<span class="fontCss">T<sub>1</sub></span>) and delay time (<span class="fontCss">T<sub>2</sub></span>)</b>
 </div>
 
 

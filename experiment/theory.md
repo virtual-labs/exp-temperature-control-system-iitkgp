@@ -11,14 +11,14 @@ The plant to be controlled is an electric oven, the temperature of which must ad
 <div align="center">				
 <img alt="" src="./images/fig2.png" class = "img-fluid">
 
-<b>Fig-1 Electrical Analogy</b>
+<b>Fig.1. Electrical Analogy</b>
 </div>
 
 
 <div align="center">				
 <img alt="" src="./images/fig3.png" class = "img-fluid">
 
-<b>Fig-2 Closed loop Temperature Control System</b>
+<b>Fig.2. Closed loop Temperature Control System</b>
 </div>
 
 
@@ -26,9 +26,11 @@ For conductive and convective heat transfer,
 
 $$ {\Theta = \alpha \Delta T} ....(1)$$
 
-where, $$ {\Theta}  = Rate\ of\ heat\ flow\ in\ Joule/sec.$$
-$$ {\Delta T}  = Temperature\ difference \ in  ^\circ C $$
-$$ {\alpha} = Constant $$
+where, <span style="font-family:'Bodoni MT'">&Theta;</span>  = Rate of heat flow in Joule/sec.
+
+<i style="font-family:'Bodoni MT'">&Delta;T</i>  = Temperature difference in  &deg;C
+
+<i style="font-family:'Bodoni MT'">&alpha;</i> = Constant
 
 
 Under assumption of linearity, the themal resistance is defined as, 
@@ -80,7 +82,7 @@ $$ G(s)= \frac{ke^{-sT_2}}{1+sT_1} $$
 <div align = "center">
 <img alt=""  src="./images/ol.png" class="img-fluid">
 
-<b>Fig 3: Open loop response of the oven</b>
+<b>Fig. 3. Open loop response of the oven</b>
 </div>
 
 <b>Controller</b><br>
@@ -98,13 +100,13 @@ These are described below.
 <b>Proportional Controller:</b>
 
 Proportional controller is simply an amplifier of gain <span style="font-family:'Bodoni MT';font-size:18px"><i>k<sub>p</sub></i></span> which amplifies the error signal and passes it to the actuator.
-A typical proportional controller may have input output characteristics as shown in fig 4.
+A typical proportional controller may have input output characteristics as shown in Fig. 4.
 Such controller gives a non-zero steady state error to step input for a type-0 system. The proportional block in the system consists of a variable gain amplifier having a maximum value, <span style="font-family:'Bodoni MT';font-size:18px"><i>k<sub>p</i></sub><sub> max</sub></span> of 20.
 
 
 <div align="center">				
 <img alt=""  src="./images/p.png" class="img-fluid"><br/>
-<b>Fig 4: P Controller</b>
+<b>Fig. 4. P Controller</b>
 </div>
 
 
@@ -114,7 +116,7 @@ Mathematical equation of such a controller is given by,
 
 $$  m(t)= k_{p} e(t)+ k_i \int_{0}^{t}e(t)dt = k_p e(t)+\frac{1}{T_i}\int_{0}^{t}e(t)dt $$
 
-It may be easily seen that this controller introduces a pole to origin, i.e. increases the system type by unity. The steady state error therefore gets reduced. A block diagram representation is shown in fig 5. Qualitatively, any small error signal <span style="font-family:'Bodoni MT';font-size:20px"><i>e(t)</i></span>, present in the system, would get continuously integrated and generate actuator signal <span style="font-family:'Bodoni MT';font-size:20px"><i>m(t)</i></span> forcing the plant output to exactly correspond to the reference input so that error is zero. In practical system the error may not be zero due to imperfections in an electronic integrator caused by biased current needed, noise ,drift present and leakage of the integrator capacitor. The integral block in the present system is realized with a circuit, that has a transfer function :
+It may be easily seen that this controller introduces a pole to origin, i.e. increases the system type by unity. The steady state error therefore gets reduced. A block diagram representation is shown in Fig. 5. Qualitatively, any small error signal <span style="font-family:'Bodoni MT';font-size:20px"><i>e(t)</i></span>, present in the system, would get continuously integrated and generate actuator signal <span style="font-family:'Bodoni MT';font-size:20px"><i>m(t)</i></span> forcing the plant output to exactly correspond to the reference input so that error is zero. In practical system the error may not be zero due to imperfections in an electronic integrator caused by biased current needed, noise ,drift present and leakage of the integrator capacitor. The integral block in the present system is realized with a circuit, that has a transfer function :
 
 $$ G_{r}(s)=\frac{1}{41 \ s}=\frac{k_{i}}{s} $$
 
@@ -123,7 +125,7 @@ The integral gain is therefore adjustable in the range 0 to 0.024 (approx).
 
 <div align="center">				
 <img alt=""  src="./images/pi.png" class="img-fluid"><br/>
-<b>Fig 5: PI Controller</b>
+<b>Fig. 5. PI Controller</b>
 </div>
 
 
@@ -143,7 +145,7 @@ $$ G_{D}(s)=19.97 \ s \ (approx) $$
 
 The derivative gain is therefore adjustable in the range of 0 to 20 approximately. 
 
-PID controller is one of the most widely used controller because of its simplicity. By adjusting its coefficients <span style="font-family:'Bodoni MT';font-size:18px"><i>k<sub>p</sub></i>, <i>k<sub>i</sub></i>, <i>k<sub>D</sub></i></span> the controller can be used in variety of systems. The process of setting the controller coefficients to suit a given plant is known as tuning. There are many methods of tuning a PID controller. In present experiment, the method of Ziegler-Nichol has been introduced which is suitable for the oven Control System.
+PID controller is one of the most widely used controller because of its simplicity. By adjusting its coefficients <span style="font-family:'Bodoni MT';font-size:18px"><i>k<sub>p</sub></i>, <i>k<sub>i</sub></i>, <i>k<sub>D</sub></i></span> the controller can be used in variety of systems. The process of setting the controller coefficients to suit a given plant is known as tuning. There are many methods of tuning a PID controller. In present experiment, the method of Ziegler-Nichol has been introduced which is suitable for the oven control system.
 
 According to the Ziegler-Nichol rule,
 in P control,
@@ -165,7 +167,7 @@ $$ k_D = 0.5T_2 $$
 <div align="center">				
 <img alt="" src="./images/pid.png" class="img-fluid">
 
-<b>Fig 6: PID Controller</b>
+<b>Fig. 6. PID Controller</b>
 </div>
 			    
 						
