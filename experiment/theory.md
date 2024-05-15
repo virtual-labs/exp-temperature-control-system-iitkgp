@@ -28,7 +28,7 @@ $$ {\Theta = \alpha \Delta T} ....(1)$$
 
 where, <span style="font-family:'Bodoni MT'">&Theta;</span>  = Rate of heat flow in Joule/sec.
 
-<i style="font-family:'Bodoni MT'">&Delta;T</i>  = Temperature difference in  &deg;C
+&Delta;<i style="font-family:'Bodoni MT'">T</i>  = Temperature difference in  &deg;C
 
 <i style="font-family:'Bodoni MT'">&alpha;</i> = Constant
 
