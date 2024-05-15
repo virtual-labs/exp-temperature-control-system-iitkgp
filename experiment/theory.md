@@ -28,7 +28,7 @@ $$ {\Theta = \alpha \Delta T} ....(1)$$
 
 where, <span style="font-family:'Bodoni MT'">&Theta;</span>  = Rate of heat flow in Joule/sec.
 
-<i style="font-family:'Bodoni MT'">&Delta;T</i>  = Temperature difference in  &deg;C
+&Delta;<i style="font-family:'Bodoni MT'">T</i>  = Temperature difference in  &deg;C
 
 <i style="font-family:'Bodoni MT'">&alpha;</i> = Constant
 
@@ -105,7 +105,7 @@ Such controller gives a non-zero steady state error to step input for a type-0 s
 
 
 <div align="center">				
-<img alt=""  src="./images/p.png" class="img-fluid"><br/>
+<img alt=""  src="./images/P.png" class="img-fluid"><br/>
 <b>Fig. 4. P Controller</b>
 </div>
 
