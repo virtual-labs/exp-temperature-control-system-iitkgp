@@ -1,8 +1,8 @@
 ## References
 #### Books
 
-1) Katsuhiko Ogata - Modern Control Engineering Prentice Hal India
-2) 'Applied Control Theory',J.R.Leigh,Peter Pergamon Ltd.
+1) Modern Control Engineering - K. Ogata, Prentice Hall, 2010
+2) Automatic Control Systems - Farid Golnaraghi, Benjamin C. Kuo (2009, Wiley)
 
 
 #### Video Lectures
