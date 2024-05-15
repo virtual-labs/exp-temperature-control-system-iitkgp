@@ -7,7 +7,7 @@
 <b>Discipline | <b> Electrical Engineering 
 :--|:--|
 <b> Lab | <b> **Control and Instrumentation Lab**
-<b> Experiment|     <b> **Temperature Control System and Experiment 4**
+<b> Experiment|     <b> **Temperature Control System**
 
 
 ### About the Experiment 
