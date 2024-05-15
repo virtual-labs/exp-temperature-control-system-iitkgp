@@ -23,7 +23,7 @@ The controller unit compares the reference and the measured signals to generate 
 <div align="center">
 <img class="img-fluid " id="introimg"  src="./experiment/images/fig1.png" alt="">
 
-<b>Fig 1: Block diagram of the Temperature Controller</b>
+<b>Fig. 1. Block diagram of the Temperature Controller</b>
 </div>
 
 
