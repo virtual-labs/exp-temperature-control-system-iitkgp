@@ -67,12 +67,12 @@ var ambtemp = Number(document.getElementById('ambT').value);
  if(myImage.src.match("./images/off.png")){
 	
 	myImage.src = "./images/on.png";	
-	document.getElementById('temp').value = ambtemp;
+	//document.getElementById('temp').value = ambtemp;
  }
 else if(myImage.src.match("./images/on.png")){
 	
 	myImage.src = "./images/off.png";
-	document.getElementById('temp').value = settemp;
+	//document.getElementById('temp').value = settemp;
 }	 
 	 
  }
@@ -158,7 +158,7 @@ function openLoop(){
 	
 	var ambient = parseFloat(Number(document.getElementById('ambT').value));///room temperature entered by user
 	console.log('ambT =' + ambient);
-	
+	//alert('openloop');
 	var secstr = document.getElementById('seconds').innerHTML;
 	
 	var secnum = (+secstr);
@@ -209,7 +209,7 @@ var ambient = parseFloat(Number(document.getElementById('ambT').value));///room 
 	
 	var secnum = (+secstr);
 	console.log(secnum);
-	
+	//alert('pcon');
 	 
 	var pvalue =  document.getElementById('P').value;
 	var kpMax = 20;
