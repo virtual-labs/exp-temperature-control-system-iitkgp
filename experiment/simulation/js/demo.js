@@ -421,6 +421,8 @@ jsPlumb.ready(function () {
 			document.getElementById('plot').disabled =false;
 			document.getElementById('tabled').disabled =false;
 			document.getElementById('refresh').disabled =false;
+			document.getElementById('picV').style.display = "none";
+				document.getElementById('Pov').style.display = "none";
 			
             }
 	    if(is_connected_1_5 && is_connected_10_11 && is_connected_8_9 && !is_connected_2_6 && !is_connected_3_7 && !unallowed_connection_present) {
@@ -428,7 +430,7 @@ jsPlumb.ready(function () {
 			   document.getElementById('controltype').value="2";
                 document.getElementById('picV').style.display = "block";
 				document.getElementById('Pov').style.display = "block";
-				document.getElementById('controltype').value="1";
+				
 			document.getElementById('plot').disabled =false;
 			document.getElementById('tabled').disabled =false;
 			document.getElementById('refresh').disabled =false;
@@ -440,7 +442,7 @@ jsPlumb.ready(function () {
 			   document.getElementById('controltype').value="3";
 			   document.getElementById('picV').style.display = "block";
 				document.getElementById('Pov').style.display = "block";
-				document.getElementById('controltype').value="1";
+				
 			document.getElementById('plot').disabled =false;
 			document.getElementById('tabled').disabled =false;
 			document.getElementById('refresh').disabled =false;
@@ -451,7 +453,7 @@ jsPlumb.ready(function () {
 			   document.getElementById('controltype').value="4";
 			   document.getElementById('picV').style.display = "block";
 				document.getElementById('Pov').style.display = "block";
-				document.getElementById('controltype').value="1";
+				
 			document.getElementById('plot').disabled =false;
 			document.getElementById('tabled').disabled =false;
 			document.getElementById('refresh').disabled =false;
