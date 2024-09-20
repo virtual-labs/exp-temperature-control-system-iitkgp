@@ -24,7 +24,7 @@
 
 2. Click on 'ON' button to switch on the unit (plant) and set the reference temperature to 5&#8451; by rotating the knob beside 'S<sub>2</sub>'  switch.
 
-3. Set P potentiometer to 0.5 which gives k<sub>p</sub> = 10 and input of 5 V to the driver .
+3. Set P potentiometer to 0.5 which gives k<sub>p</sub> = 10 and input of 0.5 V to the driver .
 
 4. Put switch 'S<sub>2</sub> to 'MEASURE' position and 'S<sub>1</sub> to 'RUN', click on 'Start' button of the stop watch. 
 
