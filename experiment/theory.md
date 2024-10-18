@@ -162,6 +162,22 @@ in PID control,
 $$ k_p = (\frac{1.2}{k})\frac{T_1}{T_2} \tag{15}$$ 
 $$ k_i = \frac{1}{2T_2} \tag{16}$$
 $$ k_D = 0.5T_2 \tag{17}$$
+<!---New Addition---->
+<b>P-control potentiometer setting:</b><br/>
+Calculate the value of <span style="font-family:'Bodoni MT';font-size:18px"><i>k<sub>p</sub></i></span> for each type of control using the Ziegler-Nichol rule. The formula for <span style="font-family:'Bodoni MT';font-size:18px"><i>k<sub>p</sub></i></span> is for an unity feedback system and has the
+dimension of Volts/&deg;C. In the present unit a temperature sensor having sensitivity of 10mV/&deg;C (0.01 V/&deg;C) is used between oven output and controller input. Hence, divide the <span style="font-family:'Bodoni MT';font-size:18px"><i>k<sub>p</sub></i></span> calculated above by 0.01 and then
+by the <span style="font-family:'Bodoni MT';font-size:18px"><i>k<sub>p</i></sub><sub> max</sub></span> value (20) to get the potentiometer setting.<br/><br/>
+
+
+<b>I-control potentiometer setting:</b><br/>
+Calculate the value of <span style="font-family:'Bodoni MT';font-size:18px"><i>k<sub>i</sub></i></span> for each type of control using the Ziegler-Nichol rule. Then divide that calculated value by
+<span style="font-family:'Bodoni MT';font-size:18px"><i>k<sub>i</i></sub><sub> max</sub></span> value (0.024) to get the potentiometer setting.<br/><br/>
+
+<b>D-control potentiometer setting:</b><br/>
+Calculate the value of <span style="font-family:'Bodoni MT';font-size:18px"><i>k<sub>D</sub></i></span> for each type of control using the Ziegler-Nichol rule. Then divide that calculated value by
+<span style="font-family:'Bodoni MT';font-size:18px"><i>k<sub>D</i></sub><sub> max</sub></span> value (23.5) to get the potentiometer setting.
+<!------------------------------------>
+
 
 
 <div align="center">				
