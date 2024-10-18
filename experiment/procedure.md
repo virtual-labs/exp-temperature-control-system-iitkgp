@@ -36,7 +36,7 @@
 
 8. Calculate dc gain (<span class="fontCss">k</span>) of the plant transfer function using the formula
  
-$$\frac{(\ Oven \ final \ temperature \ - \ Entered \ room \ temperature)}{(Reference \ (set) \ temperature \times \ Proportional \ gain \ (ex: \ 0.5 \times \ 20 \ = \ 10)) \times 0.01 \ (\ as \ sensor \ gain \ is \ 10 \ mV/\degree C)}$$
+$$\frac{(\ Oven \ final \ temperature \ - \ Entered \ room \ temperature)}{(Reference \ (set) \ temperature \times \ Proportional \ gain \ (ex: \ 0.5 \times \ 20 \ = \ 10)) \times 0.01 \ (\ as \ sensor \ gain \ is \ 10 \ mV/ \degree C)}$$
 
 Enter dc gain value to corresponding box in 'Result block'.
 
