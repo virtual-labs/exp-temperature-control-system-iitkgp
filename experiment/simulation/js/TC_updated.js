@@ -12,7 +12,7 @@
 var myImage = document.getElementById('on-off');
 var ambient = document.getElementById('ambT').value;	
  
- if(myImage.src.match("./images/off.png")&& (document.getElementById('temp').value==0 || document.getElementById('temp').value==ambient)){
+ if(myImage.src.match("./images/off.png")&& (document.getElementById('temp').value==0 || math.round(document.getElementById('temp').value)== math.round(ambient))){
 	
 	myImage.src = "./images/on.png";	
 	document.getElementById('temp').style.color="red";
@@ -30,13 +30,21 @@ else if(myImage.src.match("./images/on.png")){
 	document.getElementById('knob1').style['pointer-events'] = "none";
 	document.getElementById('knob2').style['pointer-events'] = "none";
 	document.getElementById('knob3').style['pointer-events'] = "none";
-	document.getElementById('knob4').style['pointer-events'] = "auto";
+	document.getElementById('knob4').style['pointer-events'] = "none";
+	
+	document.getElementById('plot').disabled =true;
+			document.getElementById('tabled').disabled =true;
+			document.getElementById('refresh').disabled =true;
+			document.getElementById('compB').disabled =true;
 	//document.getElementById('temp').value = 0;
 	//Cool();
+	if(math.round(document.getElementById('temp').value)!= math.round(ambient)){
 	coolPlant();
+	document.getElementById('cmsg').style.visibility="visible";
+	}
 	
 }
-else if(myImage.src.match("./images/off.png") && (document.getElementById('temp').value!=0 || document.getElementById('temp').value!=ambient)){
+else if(myImage.src.match("./images/off.png") && (document.getElementById('temp').value!=0 || math.round(document.getElementById('temp').value)!= math.round(ambient))){
 	alert('Allow the oven to reach room temperature. Wait for a while.');
 }
 
@@ -73,6 +81,21 @@ else if(myImage.src.match("./images/on.png")){
 	
 	myImage.src = "./images/off.png";
 	//document.getElementById('temp').value = settemp;
+}	 
+	 
+ }
+ 
+ /////////switch Hi-Lo///////////////
+ function HI_LO(){
+var myImage = document.getElementById('Hi-Lo');	 
+ if(myImage.src.match("./images/Hi.png")){
+	
+	myImage.src = "./images/Lo.png";	
+	
+ }
+else if(myImage.src.match("./images/Lo.png")){
+	
+	myImage.src = "./images/Hi.png";
 }	 
 	 
  }
@@ -143,6 +166,13 @@ else if(myImage.src.match("./images/on.png")){
 	  if(document.getElementById('controltype').value == 4 && document.getElementById('setm').src.match('./images/on.png') && document.getElementById('run-wait').src.match('./images/off.png')){
 		 PID_Control(); 
 	  }
+	  ///new addition after dxp review
+	  if(document.getElementById('controltype').value == 5 && document.getElementById('setm').src.match('./images/on.png') && document.getElementById('run-wait').src.match('./images/off.png') && document.getElementById('Hi-Lo').src.match('./images/Hi.png')){
+		 Relay_HI(); 
+	  }
+	  if(document.getElementById('controltype').value == 6 && document.getElementById('setm').src.match('./images/on.png') && document.getElementById('run-wait').src.match('./images/off.png') && document.getElementById('Hi-Lo').src.match('./images/Lo.png')){
+		 Relay_LO(); 
+	  }
 	  
 	  
 	  
@@ -151,6 +181,7 @@ else if(myImage.src.match("./images/on.png")){
     if (seconds > 9){
       appendSeconds.innerHTML = seconds;
     }
+	
   }
 
 
@@ -465,7 +496,242 @@ function PID_Control(){
 	
 	
 }
+
+////New addition Relay control for temperature controller
+
+  /* function Relay_HI(){
+	var ambient = parseFloat(Number(document.getElementById('ambT').value));///room temperature entered by user
+	var secstr = document.getElementById('seconds').innerHTML;	
+	var secnum = (+secstr);
+	var temp = document.getElementById('seudotemp').value;
+	var sensorgain = parseFloat(10* Math.pow(10,-3));//in v...//10mv/degreC
+	var dc_k = parseFloat(132.2);
+	var stepVolt = parseFloat(temp*sensorgain);
+	var lt = math.subtract(temp,10);///hysteresis lower limit from lab test report ///it has been observed that within 10 diff HI occures
+	var ht = math.add(temp,10);///hysteresis higher limit from lab test report
+	
+    var tau = 270;//acc to matlab plot for 62.3% of final value 101.4
+	var t = secnum;
+	var td = 15;//delay time,from lab test and matlab plot approx less than 20,hence taking 15 avg value.
+	var delay = parseFloat(t-td);
+	
+	  var epow = parseFloat(parseFloat(t-td)/tau);	
+	 outputTemp = parseFloat(stepVolt*dc_k*(1-Math.exp(-epow)));
+	  var degreeC=parseFloat(ambient+outputTemp);
+	 
+		if(degreeC<ambient){
+			degreeC= ambient;
+		}
+		else if(degreeC>=ambient && degreeC<(ht-10)){
+			
+			degreeC=parseFloat(ambient+outputTemp);
+		}
+		else if(degreeC>(ht-10)){
+		
+		var amplitude = math.subtract(ht,lt);
+		
+		var period = 260;///for HI triangular
+					
+		degreeC =  math.number(lt) + Math.abs((t % period) - period / 2) * ((amplitude) / (period / 2));///HI Tri
+		}
+	document.getElementById('temp').value = degreeC ; //taking average temp ambient as 27 degree
+	
+}  */
+
+let relayHiTransitionTime = null;
+let relayHiTransitionTemp = null;
+
+function Relay_HI() {
+  const ambient = parseFloat(document.getElementById('ambT').value);
+  const secstr = document.getElementById('seconds').innerHTML;
+  const t = parseFloat(secstr);
+
+  const temp = parseFloat(document.getElementById('seudotemp').value);
+  const sensorgain = 10 * Math.pow(10, -3); // 10 mV/°C
+  const dc_k = 132.2;
+  const stepVolt = temp * sensorgain;
+
+  const lt = temp - 10;
+  const ht = temp + 10;
+
+  const tau = 270; // time constant
+  const td = 15;   // delay
+  const period = 260;
+  const amplitude = ht - lt;
+
+  let degreeC;
+
+  if (t < td) {
+    degreeC = ambient;
+  } else {
+    const delay = t - td;
+    const expTemp = ambient + stepVolt * dc_k * (1 - Math.exp(-delay / tau));
+
+    if (relayHiTransitionTime === null && expTemp < ht) {
+      degreeC = expTemp;
+    } else {
+      if (relayHiTransitionTime === null) {
+        // Transition starts here
+        relayHiTransitionTime = t;
+        relayHiTransitionTemp = ht; // clamp to threshold
+      }
+
+      const timeSinceTransition = t - relayHiTransitionTime;
+      degreeC =
+        lt +
+        Math.abs((timeSinceTransition % period) - period / 2) *
+          (amplitude / (period / 2));
+    }
+  }
+
+  if (degreeC < ambient) degreeC = ambient;
+
+  document.getElementById('temp').value = degreeC.toFixed(2);
+}
+
+function Relay_LO(){
+	var ambient = parseFloat(Number(document.getElementById('ambT').value));///room temperature entered by user
+	var secstr = document.getElementById('seconds').innerHTML;	
+	var secnum = (+secstr);
+	var temp = document.getElementById('seudotemp').value;
+	var sensorgain = parseFloat(10* Math.pow(10,-3));//in v...//10mv/degreC
+	var dc_k = parseFloat(132.2);
+	var stepVolt = parseFloat(temp*sensorgain);
+	var lt = math.subtract(temp,5);///hysteresis lower limit from lab test report ///it has been observed that within 10 diff HI occures
+	var ht = math.add(lt,4);///hysteresis higher limit from lab test report
+	
+    var tau = 270;//acc to matlab plot for 62.3% of final value 101.4
+	var t = secnum;
+	var td = 15;//delay time,from lab test and matlab plot approx less than 20,hence taking 15 avg value.
+	var delay = parseFloat(t-td);
+	
+	  var epow = parseFloat(parseFloat(t-td)/tau);	
+	 outputTemp = parseFloat(stepVolt*dc_k*(1-Math.exp(-epow)));
+	  var degreeC=parseFloat(ambient+outputTemp);
+	 
+		if(degreeC<ambient){
+			degreeC= ambient;
+		}
+		else if(degreeC>=ambient && degreeC<(lt)){
+			
+			degreeC=parseFloat(ambient+outputTemp);
+		}
+		else if(degreeC>(lt)){
+		
+		var amplitude = math.subtract(ht,lt);
+		
+		var period = 100;///for LO triangular
+		
+		var ph=math.multiply(math.divide(75,60),temp);
+					
+		degreeC =  math.number(lt) + Math.abs(((t-ph) % period) - period / 2) * ((amplitude) / (period / 2));///HI Tri
+		}
+	document.getElementById('temp').value = degreeC ; //taking average temp ambient as 27 degree
+	
+}  
+
+/* function Relay_HI() {///HI FINAL
+      
+
+     var ambient =  parseFloat(Number(document.getElementById('ambT').value));;
+	var temp = document.getElementById('seudotemp').value;
+	var secstr = document.getElementById('seconds').innerHTML;	
+	var secnum = (+secstr);
+	
+	var sensorgain = parseFloat(10* Math.pow(10,-3));//in v...//10mv/degreC
+	var dc_k = parseFloat(132.2);
+	var stepVolt = parseFloat(temp*sensorgain);
+	
+    var tau = 270;	
+	var td = 15;
+	var t = secnum;
+
+      // Triangular wave parameters
+      const minY = math.subtract(temp,10);
+      const maxY = math.add(temp,10);
+      const A = (maxY - minY) / 2;  // Amplitude = 5
+      const C = (maxY + minY) / 2;  // Center = 60
+      const period= 200;                // Period
+      const phase = 50;             // 90° of 200 = 50s
+
+      let expstart = true;
+	  let expend = false;
+      
+      let transitionTime = 0;
+
+      
+	  var delay = parseFloat(t-td);	
+	 var epow = parseFloat(parseFloat(t-td)/tau);	
+	 var outputTemp = parseFloat(stepVolt*dc_k*(1-Math.exp(-epow)));
+	  var degreeC=parseFloat(ambient+outputTemp);
+	  //var degreeC;
+	  
+	  
+	  if(t<=td){
+			degreeC= ambient;
+		}	  
+     else if (t>td && degreeC<=temp) {
+         degreeC=parseFloat(ambient+outputTemp);
+		 
+		 if(degreeC>temp){
+		transitionTime = math.number(t);	 
+		 }
+			//transitionTime = math.number(t);		 // Exponential growth wiil be upto ref i.e. set value of temp as acc. to lab test report it switches between ref+10 and ref-10. hence triangular wave starting from ref.
+	 }  
+		 else if (t>td && degreeC > temp) {            
+            
+            //transitionTime = math.number(t);
+			var tRelative = math.subtract(t , transitionTime);
+          var shiftedT = parseFloat((tRelative - phase + period) % period);
+          degreeC = parseFloat(C + A * (4 / period) * (Math.abs(shiftedT - period / 2) - period / 4));
+          }			
+		
+		
+        document.getElementById('temp').value = degreeC ;
+		
+    } */
   
+
+
+ /* function Relay_LO(){
+	var ambient = parseFloat(Number(document.getElementById('ambT').value));///room temperature entered by user
+	var secstr = document.getElementById('seconds').innerHTML;	
+	var secnum = (+secstr);
+	var temp = document.getElementById('seudotemp').value;
+	var sensorgain = parseFloat(10* Math.pow(10,-3));//in v...//10mv/degreC
+	var dc_k = parseFloat(132.2);
+	var stepVolt = parseFloat(temp*sensorgain);
+	var lt = math.subtract(temp,5);///hysteresis lower limit from lab test report///it has been observed that within 4 diff LO occures and the hi value doesnot cross ref temp
+	var ht = math.subtract(temp,1);///hysteresis higher limit from lab test report
+	
+    var tau = 270;//acc to matlab plot for 62.3% of final value 101.4
+	var t = secnum;
+	var td = 15;//delay time,from lab test and matlab plot approx less than 20,hence taking 15 avg value.
+	var delay = parseFloat(t-td);
+	
+	  var epow = parseFloat(parseFloat(t-td)/tau);	
+	 outputTemp = parseFloat(stepVolt*dc_k*(1-Math.exp(-epow)));
+	  var degreeC=parseFloat(ambient+outputTemp);
+	 
+		if(degreeC<ambient){
+			degreeC= ambient;
+		}
+		else if(degreeC>=ambient && degreeC<=(ht)){
+			
+			degreeC=parseFloat(ambient+outputTemp);
+		}
+		else if(degreeC>(ht)){
+		
+		var amplitude = math.subtract(ht,lt);
+		
+		var period = 100;///for HI triangular
+					
+		degreeC =  math.number(lt) + Math.abs((t % period) - period / 2) * ((amplitude) / (period / 2));///HI Tri
+		}
+	document.getElementById('temp').value = degreeC ; //taking average temp ambient as 27 degree
+	
+}  */
+
  
 } 
 
@@ -515,6 +781,7 @@ if(degc<=ambTemp){
 degc = ambTemp;	
 clearInterval(coolOven);
 alert('Plant is ready. Start experiment.');
+document.getElementById('cmsg').style.visibility="hidden";
 }
 
 $('#temp').val(degc);
@@ -549,7 +816,7 @@ function createTable() {//Ec = 220v
         
     var row = table.insertRow(++tabrowindex);
    
-    if (table.rows.length <= 500) {
+    if (table.rows.length <= 5000) {
         
          // Row increment
         for (var q = 0; q < 3; q++) {
@@ -571,7 +838,7 @@ function createTable() {//Ec = 220v
 
 	var y = new Array();
     var dataPoints1=[];
-	
+	var dp2 =[],dp3=[],dp4=[],dp5=[],dp6=[];
 	
 	function plot(){
 		var dataPoints1=[];
@@ -580,9 +847,11 @@ function createTable() {//Ec = 220v
 	
 	 document.getElementById('plotbucket').style.display  = "block"; 
 	 document.getElementById('chartContainer').style.display  = "block";
-	 document.getElementById('result').style.display  = "block";
+	 document.getElementById('compB').disabled=false;
+	 //document.getElementById('result').style.display  = "block";
 	 
 	if(document.getElementById('controltype').value == 1){
+		document.getElementById('result').style.display  = "block";
 	document.getElementById("slopeline").style.display="block";
 	document.getElementById("btnangl").style.visibility ="visible";
 	document.getElementById("btnlngth").style.visibility ="visible";
@@ -590,19 +859,45 @@ function createTable() {//Ec = 220v
 	document.getElementById("btnvpos").style.visibility ="visible";		
 	} 
 	 
-	 if(document.getElementById('controltype').value != 1){
+	 if(document.getElementById('controltype').value ==2 || document.getElementById('controltype').value ==3 || document.getElementById('controltype').value ==4){
+		 document.getElementById('result').style.display  = "block";
 	document.getElementById("slopeline").style.display="none";
 	document.getElementById("btnangl").style.visibility ="hidden";
 	document.getElementById("btnlngth").style.visibility ="hidden";
 	document.getElementById("btnhpos").style.visibility ="hidden";
 	document.getElementById("btnvpos").style.visibility ="hidden";		
 	} 
+	 if(document.getElementById('controltype').value ==5 || document.getElementById('controltype').value ==6){
+		 document.getElementById('result').style.display  = "none";
+	document.getElementById("slopeline").style.display="none";
+	document.getElementById("btnangl").style.visibility ="hidden";
+	document.getElementById("btnlngth").style.visibility ="hidden";
+	document.getElementById("btnhpos").style.visibility ="hidden";
+	document.getElementById("btnvpos").style.visibility ="hidden";
+		 
+	 }
 	 
     var table1 = document.getElementById('myTable');
     for (var tabrowindex1 = 1; tabrowindex1 < table1.rows.length; tabrowindex1++) {
         var rwe1 = table1.rows[tabrowindex1].cells;
 		var val = document.querySelector('table tr:last-child td:last-child').innerHTML;
         dataPoints1.push({x: parseFloat((rwe1[1].innerHTML)), y: parseFloat(rwe1[2].innerHTML)});
+		
+		if(document.getElementById('controltype').value == 2){
+			dp2.push({x: parseFloat((rwe1[1].innerHTML)), y: parseFloat(rwe1[2].innerHTML)});	
+		}
+		if(document.getElementById('controltype').value == 3){
+			dp3.push({x: parseFloat((rwe1[1].innerHTML)), y: parseFloat(rwe1[2].innerHTML)});	
+		}
+		if(document.getElementById('controltype').value == 4){
+				dp4.push({x: parseFloat((rwe1[1].innerHTML)), y: parseFloat(rwe1[2].innerHTML)});	
+		}
+		if(document.getElementById('controltype').value == 5){
+			dp5.push({x: parseFloat((rwe1[1].innerHTML)), y: parseFloat(rwe1[2].innerHTML)});				
+		}
+		if(document.getElementById('controltype').value == 6){
+			dp6.push({x: parseFloat((rwe1[1].innerHTML)), y: parseFloat(rwe1[2].innerHTML)});	
+		}
 		
 		if(document.getElementById('controltype').value == 1){		
 		dataPoints2.push({x: parseFloat((rwe1[1].innerHTML)), y: (0)});
@@ -692,6 +987,162 @@ function createTable() {//Ec = 220v
 	document.getElementById("exportChart").addEventListener("click",function(){
 	chart.exportChart({format: "jpg"})});	
 	}
+	
+	/////code for compare plots///////////////////////////////////
+	
+	function comP(){
+	document.getElementById('plotbucket').style.display  = "block"; 
+	 document.getElementById('chartContainer').style.display  = "block";	
+	 
+	 
+	var chart = new CanvasJS.Chart("chartContainer",
+    {
+      //animationEnabled: true,
+		  //animationDuration: 10000, 
+	  title:{
+      text: "Temperature Vs. Time Plot "
+	  
+      },
+	  toolTip: {
+		fontColor: "black",
+		},
+	  axisX:
+	  
+	  {
+        interlacedColor: "#B2F9FA",
+        title: "Time (sec)"
+      },
+	  
+	 
+	  
+	  
+    axisY:[ 
+	      {// Y axis for title and dp2
+            title: "Temperature (\u00B0C)",
+			
+        },
+		
+		{///dp3 axis invisible
+			gridThickness: 0,
+    tickLength: 0,
+    lineThickness: 0,
+    labelFormatter: function(){
+      return " ";}
+	  
+		},
+		 {///dp4 axis invisible
+			gridThickness: 0,
+    tickLength: 0,
+    lineThickness: 0,
+    labelFormatter: function(){
+      return " ";}
+	  
+		},
+		{///dp5 axis invisible
+			gridThickness: 0,
+    tickLength: 0,
+    lineThickness: 0,
+    labelFormatter: function(){
+      return " ";}
+	  
+		},
+		{///dp6 axis invisible
+			gridThickness: 0,
+    tickLength: 0,
+    lineThickness: 0,
+    labelFormatter: function(){
+      return " ";}
+	  
+		}, 
+		
+		],
+		
+		
+	data: [
+	
+	{        
+        type: "spline",
+		color:"red",
+		showInLegend: true,
+		legendText: "P Control",
+        dataPoints:dp2
+	  },
+      {        
+        type: "spline",
+		color:"blue",
+		showInLegend: true,
+		legendText: "PI Control",
+        dataPoints:dp3
+	  },
+	   {        
+        type: "spline",
+		color:"green",
+		showInLegend: true,
+		legendText: "PID Control",
+        dataPoints:dp4
+	  },
+	  {        
+        type: "spline",
+		color:"black",
+		showInLegend: true,
+		legendText: "Relay (HI)",
+        dataPoints:dp5
+	  },
+	  {        
+        type: "spline",
+		color:"#D16404",
+		showInLegend: true,
+		legendText: "Relay (LO)",
+        dataPoints:dp6
+	  } 
+	   
+      ],	
+	});
+
+	chart.render();
+	
+	document.getElementById("exportChart").style.display = "block";
+	document.getElementById("exportChart").addEventListener("click",function(){
+	chart.exportChart({format: "jpg"})});		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
  
  
  function showcalcDiv(){
@@ -744,6 +1195,32 @@ function createTable() {//Ec = 220v
 		 
 	 } 
 	 
+	/*  else if(document.getElementById('controltype').value == 5){
+		  
+		  document.getElementById('calcbucket').style.display  = "block";
+		 
+		 document.getElementById('oltf').style.display = "none";
+		 //document.getElementById('PIDresult').style.display = "block";
+		 document.getElementById('Presult').style.display = "block";
+		  document.getElementById('calculate').style.display = "block";
+		 //document.getElementById('PIresult').style.display = "none";
+		 
+		 
+	 } 
+	 
+	 else if(document.getElementById('controltype').value == 6){
+		  
+		  document.getElementById('calcbucket').style.display  = "block";
+		 
+		 document.getElementById('oltf').style.display = "none";
+		 //document.getElementById('PIDresult').style.display = "block";
+		 document.getElementById('Presult').style.display = "block";
+		  document.getElementById('calculate').style.display = "block";
+		 //document.getElementById('PIresult').style.display = "none";
+		 
+		 
+	 }  */
+	 
 	 
 	 
  }
@@ -763,11 +1240,13 @@ function createTable() {//Ec = 220v
 		
 	}
 	
-	if(document.getElementById('controltype').value != 1){	
+	if(document.getElementById('controltype').value == 2 || document.getElementById('controltype').value == 3 || document.getElementById('controltype').value == 4){	
 	var fv = parseFloat(document.getElementById('fv').value);
 	var tp = parseFloat(document.getElementById('tp').value);
 	var temp = document.getElementById('seudotemp').value;
+	var amb = document.getElementById('ambT').value;
 	//alert('tempclc ='+temp);
+	document.getElementById('riseTime').value = math.subtract(math.multiply(0.9,math.subtract(fv,amb)),math.multiply(0.1,math.subtract(fv,amb))); 
 	document.getElementById('ess').value =  parseFloat(parseFloat(Math.abs(parseFloat(temp-fv))/temp)*100);
 	document.getElementById('ov').value  =  parseFloat(parseFloat(parseFloat(tp-fv)/fv)*100);	 
 	} 

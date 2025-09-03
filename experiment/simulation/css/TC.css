@@ -39,63 +39,63 @@ font-style:italic;
   #bd1{
     position: absolute;
     left: 45.2%;
-    bottom: 50.3%;    
+    bottom: 46.3%;    
 	padding: 4px;
 	z-index:1
   }
    #bd2{
     position: absolute;
     left: 45.4%;
-    bottom: 40.3%;    
+    bottom: 37.2%;    
 	padding: 4px;
 	
   }
   #bd3{
     position: absolute;
     left: 45.5%;
-    bottom: 31.3%;    
+    bottom: 29%;    
 	padding: 4px;
 	
   }
    #bd4{
     position: absolute;
     left: 45.6%;
-    bottom: 23.8%;    
+    bottom: 21.9%;    
 	padding: 4px;
 	
   }
    #bd5{
     position: absolute;
     left: 53.6%;
-    bottom: 51.8%;    
+    bottom: 47.8%;    
 	padding: 4px;
 	
   }
    #bd6{
     position: absolute;
     left: 53.8%;
-    bottom: 44.2%;    
+    bottom: 40.7%;    
 	padding: 4px;
 	
   }
    #bd7{
     position: absolute;
     left: 53.8%;
-    bottom: 36.8%;    
+    bottom: 34%;    
 	padding: 4px;
 	
   }
    #bd8{
     position: absolute;
     left: 52.5%;
-    bottom: 17.6%;    
+    bottom: 16.2%;    
 	padding: 4px;
 	
   }
    #bd9{
     position: absolute;
     left: 59.7%;
-    bottom: 17.6%;    
+    bottom: 16.2%;    
 	padding: 4px;
 	
   }
@@ -103,7 +103,7 @@ font-style:italic;
   #bd10{
     position: absolute;
     left: 89.6%;
-    bottom: 55.7%;    
+    bottom: 51.7%;    
 	padding: 4px;
 	
   }
@@ -129,14 +129,14 @@ font-style:italic;
 	position:absolute;
     width:5%;
 	height:10%;
-	top:84.5%;
+	top:85.5%;
 	left:92%;	 
  }
  #Hi-Lo{
 	position:absolute;
     width:5%;
 	height:10%;
-	top:15.5%;
+	top:14.5%;
 	left:51.8%;	 
  }
  
@@ -144,14 +144,14 @@ font-style:italic;
 	position:absolute;
     width:5%;
 	height:10%;
-	top:14.5%;
+	top:13.5%;
 	left:73%;	 
  }
  #run-wait{
 	position:absolute;
     width:5%;
 	height:10%;
-	top:48.5%;
+	top:52.5%;
 	left:74.6%;	 
  }
  #temp{
