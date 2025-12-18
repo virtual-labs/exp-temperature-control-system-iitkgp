@@ -24,7 +24,7 @@
 
 <li><ul><li>Click on 'ON' button to switch on the unit (plant) and set the reference temperature to 5&#8451; by rotating the knob beside 'S<sub>2</sub>' switch.</li>
 <li><b>Note:</b> To rotate any knob put the mouse cursor on the knob handle (black line on the knob), a hand symbol will be showing. Press left mouse button, rotate clockwise to increase or anticlockwise to decrease values.</li>
-<li><b>Note:</b> If the desired value does not appear while rotating the knob in one attempt, try rotating it back and forth to reach the correct value.</li>
+<li><b>Note:</b> If the desired value does not appear while rotating the knob in one attempt, try rotating it back and forth to reach the correct value. If the knob becomes unresponsive at any time, please refresh the page and repeat the experiment.</li>
 </ul></li><br/>
 
 <li> Set P potentiometer to 0.5 which gives k<sub>p</sub> = 10 and input of 0.5 V to the driver .</li></br>
