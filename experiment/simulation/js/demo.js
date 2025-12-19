@@ -157,15 +157,33 @@ jsPlumb.ready(function () {
             e.stopPropagation();
             instance.detachEveryConnection();
         });*/
+		///NEW ADDITION TO DISPLAY CONNECTION POINT NUMBERS DURING DELEETE
 		
+		var name1, name2;
 		
              instance.connect({ source: e10, target: e11 });
+			 e10.canvas.style.pointerEvents = "none";///disable first
+			 e10.setEnabled(false);///stop the reconnection
+			 e11.canvas.style.pointerEvents = "none";///disable first
+			 e11.setEnabled(false);///stop the reconnection
+			 
 			 //delete clicked connection
       instance.bind("click", function (conn, originalEvent) {
-           if ( confirm("Delete connection from " + conn.sourceId + " to " + conn.targetId + "?")) {////for clicking on a connection
+		  if((conn.sourceId!='bd10' && conn.targetId!='bd11')){
+			  
+			  ///NEW ADDED FOR LOOP TO DISPLAY ENDPOINT NAMES DURING DELETE CONNECTION
+		 for(var cpoint =1; cpoint<=11; cpoint++){
+			 if(conn.sourceId=='bd'+cpoint){
+				 name1 = cpoint;
+			 }
+			 if(conn.targetId=='bd'+cpoint){ 
+		  name2= cpoint;
+		 }
+		 } 
+           if ( confirm('Delete connection from'+' ' + name1 +' '+ 'to' + ' '+ name2 + '?')) {////for clicking on a connection
                instance.deleteConnection(conn);			  
 			         }	
-
+		  }
          
 		   
         }); 
@@ -219,6 +237,17 @@ jsPlumb.ready(function () {
             {
                 "source": "bd7",
                 "target": "bd3"
+            }
+        ];
+		 var correct_connections_4_7 = [
+            {
+                "source": "bd4",
+                "target": "bd7"
+            },
+    
+            {
+                "source": "bd7",
+                "target": "bd4"
             }
         ];
 
@@ -277,6 +306,15 @@ jsPlumb.ready(function () {
                 "source": "bd7",
                 "target": "bd3"
             },
+			{
+                "source": "bd4",
+                "target": "bd7"
+            },
+    
+            {
+                "source": "bd7",
+                "target": "bd4"
+            },
 			
 			{
                 "source": "bd8",
@@ -305,6 +343,7 @@ jsPlumb.ready(function () {
 				var is_connected_1_5 = false;
 				var is_connected_2_6 = false;
 				var is_connected_3_7 = false;
+				var is_connected_4_7 = false;
 				var is_connected_8_9 = false;
 				var is_connected_10_11 = false;
 				
@@ -375,6 +414,23 @@ jsPlumb.ready(function () {
             // else
             // return false
         });
+		actual_connections.forEach(function (connection) {
+            var this_connection = {
+                "source": connection.sourceId,
+                "target": connection.targetId
+            };
+
+            if(!is_connected_4_7){
+                is_connected_4_7 = correct_connections_4_7.find(function (conn) {
+                    return conn.source === this_connection.source && conn.target === this_connection.target;
+                });
+            }
+              // if this_connection exists in correct_connections
+            // remove this connection from correct ones
+            // continue
+            // else
+            // return false
+        });
 		
 		actual_connections.forEach(function (connection) {
             var this_connection = {
@@ -413,36 +469,79 @@ jsPlumb.ready(function () {
         });
 		
 		
+		
         if (is_connected_1_5 && is_connected_10_11 && !is_connected_8_9 && !is_connected_2_6 && !is_connected_3_7 && !unallowed_connection_present ) {
 			
 			  
             alert("RIGHT CONNECTION \n Openloop Control");
 			document.getElementById('controltype').value="1";
-			
+			document.getElementById('plot').disabled =false;
+			document.getElementById('tabled').disabled =false;
+			document.getElementById('refresh').disabled =false;
+			document.getElementById('picV').style.display = "none";
+				document.getElementById('Pov').style.display = "none";
 			
             }
-	    if(is_connected_1_5 && is_connected_10_11 && is_connected_8_9 && !is_connected_2_6 && !is_connected_3_7 && !unallowed_connection_present) {
+	    else if(is_connected_1_5 && is_connected_10_11 && is_connected_8_9 && !is_connected_2_6 && !is_connected_3_7 && !unallowed_connection_present) {
                alert("RIGHT CONNECTION \n Proportional Control");
 			   document.getElementById('controltype').value="2";
-                
+                document.getElementById('picV').style.display = "block";
+				document.getElementById('Pov').style.display = "block";
+				
+			document.getElementById('plot').disabled =false;
+			document.getElementById('tabled').disabled =false;
+			document.getElementById('refresh').disabled =false;
+				
             }  
 			
 			else if(is_connected_1_5 && is_connected_2_6 && is_connected_10_11 && is_connected_8_9 && !is_connected_3_7 && !unallowed_connection_present) {
                alert("RIGHT CONNECTION \n Proportional Integral Control");
 			   document.getElementById('controltype').value="3";
+			   document.getElementById('picV').style.display = "block";
+				document.getElementById('Pov').style.display = "block";
+				
+			document.getElementById('plot').disabled =false;
+			document.getElementById('tabled').disabled =false;
+			document.getElementById('refresh').disabled =false;
                 
             } 
 			else if(is_connected_1_5 && is_connected_2_6 && is_connected_3_7 && is_connected_10_11 && is_connected_8_9 && !unallowed_connection_present) {
                alert("RIGHT CONNECTION \n Proportional Integral Derivative Control");
 			   document.getElementById('controltype').value="4";
+			   document.getElementById('picV').style.display = "block";
+				document.getElementById('Pov').style.display = "block";
+				
+			document.getElementById('plot').disabled =false;
+			document.getElementById('tabled').disabled =false;
+			document.getElementById('refresh').disabled =false;
                 
             } 
+			else if(is_connected_4_7 && is_connected_10_11 && is_connected_8_9 && !unallowed_connection_present && document.getElementById('Hi-Lo').src.match("./images/Hi.png")) {
+               alert("RIGHT CONNECTION \n Relay Control (HI)");
+			   document.getElementById('controltype').value="5";
+			   document.getElementById('picV').style.display = "block";
+				document.getElementById('Pov').style.display = "block";
+				
+			document.getElementById('plot').disabled =false;
+			document.getElementById('tabled').disabled =false;
+			document.getElementById('refresh').disabled =false;
+                
+            } 
+			else if(is_connected_4_7 && is_connected_10_11 && is_connected_8_9 && !unallowed_connection_present && document.getElementById('Hi-Lo').src.match("./images/Lo.png")) {
+               alert("RIGHT CONNECTION \n Relay Control (LO)");
+			   document.getElementById('controltype').value="6";
+			   document.getElementById('picV').style.display = "block";
+				document.getElementById('Pov').style.display = "block";
+				
+			document.getElementById('plot').disabled =false;
+			document.getElementById('tabled').disabled =false;
+			document.getElementById('refresh').disabled =false;
+                
+            }
+			else {
+				alert('Follow the instructions properly to make the connections.');
+			}
 			
-			
-			
-			
-
-
 
     });
 });

@@ -189,7 +189,7 @@ var myImage = document.getElementById('on-off');
 	document.getElementById('knob2').style['pointer-events'] = "auto";
 	document.getElementById('knob3').style['pointer-events'] = "auto";
 	document.getElementById('knob4').style['pointer-events'] = "auto";
-	
+	document.getElementById('temp').value = 5;
  }
 else if(myImage.src.match("./images/on.png")){
 	
@@ -199,7 +199,7 @@ else if(myImage.src.match("./images/on.png")){
 	document.getElementById('knob2').style['pointer-events'] = "none";
 	document.getElementById('knob3').style['pointer-events'] = "none";
 	document.getElementById('knob4').style['pointer-events'] = "auto";
-	
+	document.getElementById('temp').value = " ";
 	
 }	 
 	 
@@ -509,7 +509,7 @@ function P_Control(){
 	var t = secnum;
 
 	//////Now 2nd order equn acc to plant equn///////////////////////////////
-	var k = parseFloat(132.2);//from Lab reports 
+	var k = parseFloat(132.2);//parseFloat(132.2);//from Lab reports 
 	var T1 =parseFloat(270);///acc. matlab
 	var T2 =parseFloat(15);/// acc. matlab	
 	//var ki= parseFloat(1/parseFloat(3.3*T2));
@@ -873,7 +873,7 @@ function createTable() {//Ec = 220v
 	var fv = parseFloat(document.getElementById('fv').value);
 	var tp = parseFloat(document.getElementById('tp').value);
 	var temp = document.getElementById('seudotemp').value;
-	alert('tempclc ='+temp);
+	//alert('tempclc ='+temp);
 	document.getElementById('ess').value =  parseFloat(parseFloat(parseFloat(temp-fv)/temp)*100);
 	document.getElementById('ov').value  =  parseFloat(parseFloat(parseFloat(tp-fv)/fv)*100);	 
 	 
